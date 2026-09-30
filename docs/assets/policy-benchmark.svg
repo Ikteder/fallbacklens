@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="820" height="330" viewBox="0 0 820 330" role="img" aria-labelledby="title desc">
+<title id="title">FallbackLens synthetic policy benchmark</title>
+<desc id="desc">The shape-only baseline correctly classified 2 of 10 cases. FallbackLens correctly classified 10 of 10 cases.</desc>
+<rect width="820" height="330" rx="20" fill="#f5f7fb"/>
+<text x="42" y="54" font-size="28" font-family="system-ui,sans-serif" font-weight="750" fill="#172033">Unsafe routes need more than syntax checks</text>
+<text x="42" y="82" font-size="14" font-family="system-ui,sans-serif" fill="#60708b">Correct classification on the versioned 2026-09-30 synthetic corpus</text>
+<text x="42" y="137" font-size="16" font-family="system-ui,sans-serif" fill="#172033">Shape-only baseline</text>
+<rect x="222" y="116" width="520" height="28" rx="8" fill="#d8dfeb"/><rect x="222" y="116" width="104.0" height="28" rx="8" fill="#a15c00"/>
+<text x="754" y="137" font-size="16" font-family="system-ui,sans-serif" font-weight="700" fill="#172033">2/10</text>
+<text x="42" y="207" font-size="16" font-family="system-ui,sans-serif" fill="#172033">FallbackLens 0.1</text>
+<rect x="222" y="186" width="520" height="28" rx="8" fill="#d8dfeb"/><rect x="222" y="186" width="520.0" height="28" rx="8" fill="#16794b"/>
+<text x="754" y="207" font-size="16" font-family="system-ui,sans-serif" font-weight="700" fill="#172033">10/10</text>
+<text x="42" y="270" font-size="13" font-family="system-ui,sans-serif" fill="#60708b">Cases cover cycles, missing nodes, contract drift, and bounded attempt, cost, and latency exposure.</text>
+<text x="42" y="295" font-size="13" font-family="system-ui,sans-serif" fill="#60708b">Synthetic configuration evidence, not a live-provider reliability benchmark.</text>
+</svg>

@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "as_of": "2026-09-30",
+  "sources": [
+    "Synthetic demonstration facts. Replace with dated provider documentation before production use."
+  ],
+  "models": {
+    "agent-primary": {
+      "capabilities": ["tool_calling", "json_schema"],
+      "context_window_tokens": 128000,
+      "input_usd_per_million": 2.0,
+      "output_usd_per_million": 8.0,
+      "latency_p95_ms": 1300,
+      "zero_data_retention": true
+    },
+    "agent-secondary": {
+      "capabilities": ["tool_calling", "json_schema"],
+      "context_window_tokens": 128000,
+      "input_usd_per_million": 1.0,
+      "output_usd_per_million": 4.0,
+      "latency_p95_ms": 1600,
+      "zero_data_retention": true
+    },
+    "agent-local": {
+      "capabilities": ["tool_calling", "json_schema"],
+      "context_window_tokens": 65536,
+      "input_usd_per_million": 0.0,
+      "output_usd_per_million": 0.0,
+      "latency_p95_ms": 2100,
+      "zero_data_retention": true
+    }
+  },
+  "contracts": [
+    {
+      "name": "tool-agent",
+      "entrypoint": "agent-primary",
+      "required_capabilities": ["tool_calling", "json_schema"],
+      "required_context_tokens": 64000,
+      "require_zero_data_retention": true,
+      "expected_input_tokens": 4000,
+      "expected_output_tokens": 1000,
+      "max_attempts": 6,
+      "max_cost_usd": 0.08,
+      "max_latency_ms": 12000
+    }
+  ]
+}

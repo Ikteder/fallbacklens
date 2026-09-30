@@ -1,0 +1,112 @@
+{
+  "schema_version": 1,
+  "name": "fallback-policy-safety-v1",
+  "description": "Synthetic cases for route graph and workload-contract defects. No provider behavior is measured.",
+  "base_config": {
+    "model_list": [
+      {"model_name": "primary", "litellm_params": {"model": "example/primary"}},
+      {"model_name": "backup", "litellm_params": {"model": "example/backup"}},
+      {"model_name": "local", "litellm_params": {"model": "example/local"}}
+    ],
+    "router_settings": {
+      "num_retries": 1,
+      "fallbacks": [
+        {"primary": "backup"},
+        {"backup": "local"}
+      ]
+    }
+  },
+  "base_profile": {
+    "schema_version": 1,
+    "as_of": "2026-09-30",
+    "sources": ["Versioned synthetic benchmark facts"],
+    "models": {
+      "primary": {
+        "capabilities": ["tools", "json"],
+        "context_window_tokens": 128000,
+        "input_usd_per_million": 2.0,
+        "output_usd_per_million": 8.0,
+        "latency_p95_ms": 1000,
+        "zero_data_retention": true
+      },
+      "backup": {
+        "capabilities": ["tools", "json"],
+        "context_window_tokens": 128000,
+        "input_usd_per_million": 1.0,
+        "output_usd_per_million": 4.0,
+        "latency_p95_ms": 1400,
+        "zero_data_retention": true
+      },
+      "local": {
+        "capabilities": ["tools", "json"],
+        "context_window_tokens": 64000,
+        "input_usd_per_million": 0.0,
+        "output_usd_per_million": 0.0,
+        "latency_p95_ms": 1800,
+        "zero_data_retention": true
+      }
+    },
+    "contracts": [
+      {
+        "name": "agent",
+        "entrypoint": "primary",
+        "required_capabilities": ["tools", "json"],
+        "required_context_tokens": 64000,
+        "require_zero_data_retention": true,
+        "expected_input_tokens": 4000,
+        "expected_output_tokens": 1000,
+        "max_attempts": 6,
+        "max_cost_usd": 0.08,
+        "max_latency_ms": 10000
+      }
+    ]
+  },
+  "cases": [
+    {"name": "valid finite policy", "expected_valid": true},
+    {
+      "name": "malformed fallback entry",
+      "expected_valid": false,
+      "config_patch": {"router_settings": {"fallbacks": [{"primary": "backup", "backup": "local"}]}}
+    },
+    {
+      "name": "three-node cycle",
+      "expected_valid": false,
+      "config_patch": {"router_settings": {"fallbacks": [{"primary": "backup"}, {"backup": "local"}, {"local": "primary"}]}}
+    },
+    {
+      "name": "unknown fallback target",
+      "expected_valid": false,
+      "config_patch": {"router_settings": {"fallbacks": [{"primary": "missing"}]}}
+    },
+    {
+      "name": "tool capability drift",
+      "expected_valid": false,
+      "profile_patch": {"models": {"backup": {"capabilities": ["json"]}}}
+    },
+    {
+      "name": "context window drift",
+      "expected_valid": false,
+      "profile_patch": {"models": {"local": {"context_window_tokens": 32000}}}
+    },
+    {
+      "name": "privacy drift",
+      "expected_valid": false,
+      "profile_patch": {"models": {"backup": {"zero_data_retention": false}}}
+    },
+    {
+      "name": "attempt budget exceeded",
+      "expected_valid": false,
+      "profile_patch": {"contracts": [{"name": "agent", "entrypoint": "primary", "required_capabilities": ["tools", "json"], "required_context_tokens": 64000, "require_zero_data_retention": true, "expected_input_tokens": 4000, "expected_output_tokens": 1000, "max_attempts": 5, "max_cost_usd": 0.08, "max_latency_ms": 10000}]}
+    },
+    {
+      "name": "cost budget exceeded",
+      "expected_valid": false,
+      "profile_patch": {"contracts": [{"name": "agent", "entrypoint": "primary", "required_capabilities": ["tools", "json"], "required_context_tokens": 64000, "require_zero_data_retention": true, "expected_input_tokens": 4000, "expected_output_tokens": 1000, "max_attempts": 6, "max_cost_usd": 0.02, "max_latency_ms": 10000}]}
+    },
+    {
+      "name": "latency budget exceeded",
+      "expected_valid": false,
+      "profile_patch": {"contracts": [{"name": "agent", "entrypoint": "primary", "required_capabilities": ["tools", "json"], "required_context_tokens": 64000, "require_zero_data_retention": true, "expected_input_tokens": 4000, "expected_output_tokens": 1000, "max_attempts": 6, "max_cost_usd": 0.08, "max_latency_ms": 7000}]}
+    }
+  ]
+}

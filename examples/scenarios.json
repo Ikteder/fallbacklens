@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "max_steps": 20,
+  "scenarios": [
+    {
+      "name": "primary and secondary rate limited",
+      "entrypoint": "agent-primary",
+      "outcomes": {
+        "agent-primary": ["rate_limit", "rate_limit"],
+        "agent-secondary": ["rate_limit", "rate_limit"],
+        "agent-local": ["success"]
+      },
+      "expected_status": "success",
+      "expected_terminal": "agent-local"
+    },
+    {
+      "name": "context overflow uses declared context route",
+      "entrypoint": "agent-primary",
+      "outcomes": {
+        "agent-primary": ["context_window", "context_window"],
+        "agent-secondary": ["success"]
+      },
+      "expected_status": "success",
+      "expected_terminal": "agent-secondary"
+    }
+  ]
+}

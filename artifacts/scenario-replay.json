@@ -1,0 +1,77 @@
+{
+  "max_steps": 20,
+  "results": [
+    {
+      "attempts": 5,
+      "matched_expectation": true,
+      "name": "primary and secondary rate limited",
+      "status": "success",
+      "terminal": "agent-local",
+      "trace": [
+        {
+          "attempt": 1,
+          "model_group": "agent-primary",
+          "outcome": "rate_limit",
+          "step": 1
+        },
+        {
+          "attempt": 2,
+          "model_group": "agent-primary",
+          "outcome": "rate_limit",
+          "step": 2
+        },
+        {
+          "attempt": 1,
+          "model_group": "agent-secondary",
+          "outcome": "rate_limit",
+          "step": 3
+        },
+        {
+          "attempt": 2,
+          "model_group": "agent-secondary",
+          "outcome": "rate_limit",
+          "step": 4
+        },
+        {
+          "attempt": 1,
+          "model_group": "agent-local",
+          "outcome": "success",
+          "step": 5
+        }
+      ]
+    },
+    {
+      "attempts": 3,
+      "matched_expectation": true,
+      "name": "context overflow uses declared context route",
+      "status": "success",
+      "terminal": "agent-secondary",
+      "trace": [
+        {
+          "attempt": 1,
+          "model_group": "agent-primary",
+          "outcome": "context_window",
+          "step": 1
+        },
+        {
+          "attempt": 2,
+          "model_group": "agent-primary",
+          "outcome": "context_window",
+          "step": 2
+        },
+        {
+          "attempt": 1,
+          "model_group": "agent-secondary",
+          "outcome": "success",
+          "step": 3
+        }
+      ]
+    }
+  ],
+  "schema_version": 1,
+  "summary": {
+    "bounded_aborts": 0,
+    "matched_expectation": 2,
+    "scenarios": 2
+  }
+}

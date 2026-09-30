@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="820" height="310" viewBox="0 0 820 310" role="img" aria-labelledby="title desc">
+<title id="title">FallbackLens verified route graph</title>
+<desc id="desc">3 model groups and 3 fallback edges with 2 errors and 0 warnings.</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#8290a8"/></marker></defs>
+<rect width="100%" height="100%" rx="18" fill="#f5f7fb"/>
+<text x="40" y="48" font-size="26" font-weight="750" fill="#172033">Fallback policy evidence</text>
+<text x="40" y="76" font-size="14" fill="#60708b">2 errors · 0 warnings · retries 2</text>
+<path d="M 315 155 Q 335.0 155 355 155" fill="none" stroke="#8290a8" stroke-width="2" marker-end="url(#arrow)"/><path d="M 485 155 Q 250.0 155 15 155" fill="none" stroke="#8290a8" stroke-width="2" marker-end="url(#arrow)"/><path d="M 145 155 Q 165.0 155 185 155" fill="none" stroke="#8290a8" stroke-width="2" marker-end="url(#arrow)"/><rect x="15" y="123" width="130" height="64" rx="12" fill="#fee4e2" stroke="#b42318" stroke-width="2"/><text x="80" y="160" text-anchor="middle" font-size="14" font-weight="700" fill="#172033">agent-local</text><rect x="185" y="123" width="130" height="64" rx="12" fill="#fee4e2" stroke="#b42318" stroke-width="2"/><text x="250" y="160" text-anchor="middle" font-size="14" font-weight="700" fill="#172033">agent-primary</text><rect x="355" y="123" width="130" height="64" rx="12" fill="#fee4e2" stroke="#b42318" stroke-width="2"/><text x="420" y="160" text-anchor="middle" font-size="14" font-weight="700" fill="#172033">agent-secondary</text>
+<text x="40" y="278" font-size="13" fill="#60708b">Green nodes satisfy declared contracts in this static audit. Red nodes have error findings.</text>
+</svg>

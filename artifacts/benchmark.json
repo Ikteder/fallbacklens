@@ -1,0 +1,128 @@
+{
+  "baseline": {
+    "accuracy": 0.2,
+    "correct": 2,
+    "name": "shape-only fallback validation"
+  },
+  "cases": 10,
+  "corpus": "fallback-policy-safety-v1",
+  "fallbacklens": {
+    "accuracy": 1.0,
+    "correct": 10,
+    "version": "0.1.0"
+  },
+  "results": [
+    {
+      "baseline_correct": true,
+      "baseline_valid": true,
+      "expected_valid": true,
+      "fallbacklens_correct": true,
+      "fallbacklens_valid": true,
+      "finding_codes": [],
+      "name": "valid finite policy"
+    },
+    {
+      "baseline_correct": true,
+      "baseline_valid": false,
+      "expected_valid": false,
+      "fallbacklens_correct": true,
+      "fallbacklens_valid": false,
+      "finding_codes": [
+        "FALLBACK_ENTRY_SHAPE",
+        "MODEL_GROUP_UNREACHABLE"
+      ],
+      "name": "malformed fallback entry"
+    },
+    {
+      "baseline_correct": false,
+      "baseline_valid": true,
+      "expected_valid": false,
+      "fallbacklens_correct": true,
+      "fallbacklens_valid": false,
+      "finding_codes": [
+        "FALLBACK_CYCLE",
+        "UNBOUNDED_ROUTE"
+      ],
+      "name": "three-node cycle"
+    },
+    {
+      "baseline_correct": false,
+      "baseline_valid": true,
+      "expected_valid": false,
+      "fallbacklens_correct": true,
+      "fallbacklens_valid": false,
+      "finding_codes": [
+        "FALLBACK_TARGET_UNKNOWN",
+        "MODEL_GROUP_UNREACHABLE"
+      ],
+      "name": "unknown fallback target"
+    },
+    {
+      "baseline_correct": false,
+      "baseline_valid": true,
+      "expected_valid": false,
+      "fallbacklens_correct": true,
+      "fallbacklens_valid": false,
+      "finding_codes": [
+        "CAPABILITY_DRIFT"
+      ],
+      "name": "tool capability drift"
+    },
+    {
+      "baseline_correct": false,
+      "baseline_valid": true,
+      "expected_valid": false,
+      "fallbacklens_correct": true,
+      "fallbacklens_valid": false,
+      "finding_codes": [
+        "CONTEXT_WINDOW_DRIFT"
+      ],
+      "name": "context window drift"
+    },
+    {
+      "baseline_correct": false,
+      "baseline_valid": true,
+      "expected_valid": false,
+      "fallbacklens_correct": true,
+      "fallbacklens_valid": false,
+      "finding_codes": [
+        "PRIVACY_DRIFT"
+      ],
+      "name": "privacy drift"
+    },
+    {
+      "baseline_correct": false,
+      "baseline_valid": true,
+      "expected_valid": false,
+      "fallbacklens_correct": true,
+      "fallbacklens_valid": false,
+      "finding_codes": [
+        "ATTEMPT_BUDGET_EXCEEDED"
+      ],
+      "name": "attempt budget exceeded"
+    },
+    {
+      "baseline_correct": false,
+      "baseline_valid": true,
+      "expected_valid": false,
+      "fallbacklens_correct": true,
+      "fallbacklens_valid": false,
+      "finding_codes": [
+        "COST_BUDGET_EXCEEDED"
+      ],
+      "name": "cost budget exceeded"
+    },
+    {
+      "baseline_correct": false,
+      "baseline_valid": true,
+      "expected_valid": false,
+      "fallbacklens_correct": true,
+      "fallbacklens_valid": false,
+      "finding_codes": [
+        "LATENCY_BUDGET_EXCEEDED"
+      ],
+      "name": "latency budget exceeded"
+    }
+  ],
+  "schema_version": 1
+}

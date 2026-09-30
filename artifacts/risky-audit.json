@@ -1,0 +1,75 @@
+{
+  "contracts": [
+    {
+      "max_attempts": null,
+      "max_cost_usd": null,
+      "max_latency_ms": null,
+      "name": "tool-agent",
+      "path_count": null,
+      "worst_path": null
+    }
+  ],
+  "findings": [
+    {
+      "code": "FALLBACK_CYCLE",
+      "contract": null,
+      "message": "fallback graph contains a cycle: agent-local -> agent-primary -> agent-secondary -> agent-local",
+      "nodes": [
+        "agent-local",
+        "agent-primary",
+        "agent-secondary"
+      ],
+      "severity": "error"
+    },
+    {
+      "code": "UNBOUNDED_ROUTE",
+      "contract": "tool-agent",
+      "message": "a reachable fallback cycle prevents a finite configured exposure bound",
+      "nodes": [
+        "agent-local",
+        "agent-primary",
+        "agent-secondary"
+      ],
+      "severity": "error"
+    }
+  ],
+  "graph": {
+    "edges": [
+      {
+        "kind": "general",
+        "order": 0,
+        "source": "agent-primary",
+        "target": "agent-secondary"
+      },
+      {
+        "kind": "general",
+        "order": 0,
+        "source": "agent-secondary",
+        "target": "agent-local"
+      },
+      {
+        "kind": "general",
+        "order": 0,
+        "source": "agent-local",
+        "target": "agent-primary"
+      }
+    ],
+    "nodes": [
+      "agent-local",
+      "agent-primary",
+      "agent-secondary"
+    ],
+    "retries": 2
+  },
+  "profile_as_of": "2026-09-30",
+  "profile_sources": [
+    "Synthetic demonstration facts. Replace with dated provider documentation before production use."
+  ],
+  "schema_version": 1,
+  "source_format": "litellm",
+  "summary": {
+    "errors": 2,
+    "info": 0,
+    "warnings": 0
+  }
+}

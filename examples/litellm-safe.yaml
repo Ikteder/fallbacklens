@@ -1,0 +1,20 @@
+model_list:
+  - model_name: agent-primary
+    litellm_params:
+      model: openai/example-primary
+  - model_name: agent-secondary
+    litellm_params:
+      model: azure/example-secondary
+  - model_name: agent-local
+    litellm_params:
+      model: openai/local-tool-model
+
+router_settings:
+  num_retries: 1
+  fallbacks:
+    - agent-primary: agent-secondary
+    - agent-secondary: agent-local
+  context_window_fallbacks:
+    - agent-primary: agent-secondary
+  content_policy_fallbacks:
+    - agent-primary: agent-local

@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FallbackLens audit report</title>
+<style>
+:root{--ink:#172033;--muted:#60708b;--paper:#f5f7fb;--panel:#fff;--good:#16794b;--warn:#a15c00;--bad:#b42318;--line:#d8dfeb}
+*{box-sizing:border-box} body{margin:0;background:var(--paper);color:var(--ink);font:15px/1.5 system-ui,sans-serif}
+main{max-width:1100px;margin:auto;padding:32px 18px 60px} h1{margin:0 0 6px;font-size:clamp(28px,5vw,48px)} .lead{color:var(--muted);max-width:760px}
+.cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:24px 0} .card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px}
+.number{font-size:34px;font-weight:750} .error .number{color:var(--bad)} .warning .number{color:var(--warn)} .ok .number{color:var(--good)}
+.table-wrap{overflow:auto;background:var(--panel);border:1px solid var(--line);border-radius:14px;margin:14px 0 28px} table{width:100%;border-collapse:collapse;min-width:700px} th,td{padding:12px 14px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top} th{font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+.badge{display:inline-block;border-radius:999px;padding:2px 8px;font-weight:700} .badge.error{color:var(--bad);background:#fee4e2} .badge.warning{color:var(--warn);background:#fff0c2} .badge.info{color:#175cd3;background:#e8f1ff}
+code{font-family:ui-monospace,SFMono-Regular,Consolas,monospace} @media(max-width:620px){.cards{grid-template-columns:1fr} main{padding-top:22px}}
+</style>
+</head>
+<body><main>
+<p>OFFLINE ROUTE CONTRACT AUDIT</p><h1>FallbackLens</h1>
+<p class="lead">Profile facts dated 2026-09-30. Exposure values are conservative configuration bounds, not bills or SLO predictions.</p>
+<section class="cards">
+<article class="card error"><div class="number">2</div><div>errors</div></article>
+<article class="card warning"><div class="number">0</div><div>warnings</div></article>
+<article class="card ok"><div class="number">3</div><div>model groups</div></article>
+</section>
+<h2>Contract exposure</h2><div class="table-wrap"><table><thead><tr><th>Contract</th><th>Paths</th><th>Attempts</th><th>Cost bound</th><th>Latency bound</th></tr></thead><tbody><tr><td>tool-agent</td><td>unbounded</td><td>unknown</td><td>unknown</td><td>unknown</td></tr></tbody></table></div>
+<h2>Findings</h2><div class="table-wrap"><table><thead><tr><th>Severity</th><th>Code</th><th>Scope</th><th>Evidence</th></tr></thead><tbody><tr><td><span class='badge error'>error</span></td><td><code>FALLBACK_CYCLE</code></td><td>global</td><td>fallback graph contains a cycle: agent-local -&gt; agent-primary -&gt; agent-secondary -&gt; agent-local</td></tr><tr><td><span class='badge error'>error</span></td><td><code>UNBOUNDED_ROUTE</code></td><td>tool-agent</td><td>a reachable fallback cycle prevents a finite configured exposure bound</td></tr></tbody></table></div>
+<p class="lead">Static success does not replace live provider validation, failure injection, or terms review.</p>
+<script type="application/json" id="fallbacklens-report">{"contracts": [{"max_attempts": null, "max_cost_usd": null, "max_latency_ms": null, "name": "tool-agent", "path_count": null, "worst_path": null}], "findings": [{"code": "FALLBACK_CYCLE", "contract": null, "message": "fallback graph contains a cycle: agent-local -\u003e agent-primary -\u003e agent-secondary -\u003e agent-local", "nodes": ["agent-local", "agent-primary", "agent-secondary"], "severity": "error"}, {"code": "UNBOUNDED_ROUTE", "contract": "tool-agent", "message": "a reachable fallback cycle prevents a finite configured exposure bound", "nodes": ["agent-local", "agent-primary", "agent-secondary"], "severity": "error"}], "graph": {"edges": [{"kind": "general", "order": 0, "source": "agent-primary", "target": "agent-secondary"}, {"kind": "general", "order": 0, "source": "agent-secondary", "target": "agent-local"}, {"kind": "general", "order": 0, "source": "agent-local", "target": "agent-primary"}], "nodes": ["agent-local", "agent-primary", "agent-secondary"], "retries": 2}, "profile_as_of": "2026-09-30", "profile_sources": ["Synthetic demonstration facts. Replace with dated provider documentation before production use."], "schema_version": 1, "source_format": "litellm", "summary": {"errors": 2, "info": 0, "warnings": 0}}</script>
+</main></body></html>
