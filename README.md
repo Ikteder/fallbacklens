@@ -138,6 +138,8 @@ python -m build
 
 All 15 tests passed. Browser QA covered 1280-class desktop rendering and a 390 by 844 viewport. The narrow report had no page-level horizontal overflow, tables scrolled inside their containers, and the console had no warnings or errors. Exact evidence is recorded in [`docs/experiments/2026-09-30-verification.md`](docs/experiments/2026-09-30-verification.md).
 
+GitHub Actions also passed the complete suite, audit, replay, comparison, dependency audit, and package build on Python 3.10, 3.12, and 3.14.
+
 ## Safety and interpretation
 
 - YAML is parsed with `yaml.safe_load`; arbitrary Python object construction is rejected by test.

@@ -42,6 +42,12 @@ The standalone safe-audit HTML was served over loopback and inspected in Chrome.
 | Console | 0 warnings and 0 errors |
 | Benchmark SVG | Rendered labels, bars, 2/10 baseline, 10/10 FallbackLens, and synthetic-evidence disclaimer |
 
+## Hosted CI
+
+The first GitHub Actions run, `36769669570`, passed every step on Python 3.12 and 3.14. Python 3.10 stopped at `pip-audit` because its runner environment seeded `setuptools 79.0.1`, which the audit identified under `PYSEC-2026-3447` with 83.0.0 as the fix. The workflow was changed to upgrade `setuptools>=83` before installing and auditing the project.
+
+Replacement run [`36769959681`](https://github.com/Ikteder/fallbacklens/actions/runs/36769959681) then passed on Python 3.10, 3.12, and 3.14, including all 15 tests, lint, compilation, dependency consistency and vulnerability checks, benchmark, safe audit, scenario replay, and package build.
+
 ## Uncertainty
 
-The corpus is implementation-aligned and synthetic. Browser coverage used one local Chrome environment. Hosted Python-matrix results are recorded separately only after a public CI run completes.
+The corpus is implementation-aligned and synthetic. Browser coverage used one local Chrome environment. Hosted CI verifies supported Python versions, but it does not establish behavior against live providers or production traffic.
