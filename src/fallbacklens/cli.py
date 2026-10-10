@@ -9,6 +9,7 @@ from pathlib import Path
 
 from .audit import audit_policy
 from .benchmark import render_benchmark_svg, run_benchmark
+from .interop import run_interop
 from .loaders import load_litellm_config, load_profile
 from .report import render_html, render_svg, render_terminal, write_json, write_text
 from .simulate import load_scenarios, replay_scenarios
@@ -65,12 +66,33 @@ def build_parser() -> argparse.ArgumentParser:
     trace_benchmark.add_argument("cases")
     trace_benchmark.add_argument("--json", dest="json_path")
     trace_benchmark.add_argument("--svg", dest="svg_path")
+    interop = subparsers.add_parser(
+        "interop-run",
+        help="optional LiteLLM instrumentation with network-denied mock responses",
+    )
+    interop.add_argument("--output", type=Path, required=True)
+    interop.add_argument("--repetitions", type=int, default=3)
     return parser
 
 
 def main(argv: list[str] | None = None) -> int:
     args = build_parser().parse_args(argv)
     try:
+        if args.command == "interop-run":
+            result = run_interop(args.output, args.repetitions)
+            print(
+                json.dumps(
+                    {
+                        key: result[key]
+                        for key in (
+                            "cases",
+                            "expected_matches",
+                            "actual_provider_cost_usd",
+                        )
+                    }
+                )
+            )
+            return 0 if result["expected_matches"] == result["cases"] else 1
         if args.command == "trace-benchmark":
             result = run_trace_benchmark(load_trace_json(args.cases))
             print(json.dumps(result, indent=2, sort_keys=True))

@@ -1,0 +1,476 @@
+{
+  "schema_version": 1,
+  "suite": "litellm-mock-interop-v1",
+  "seed": 20261009,
+  "cases": 9,
+  "expected_matches": 9,
+  "actual_provider_cost_usd": 0.0,
+  "results": [
+    {
+      "case": "experimental-dedicated",
+      "repetition": 0,
+      "expected": "observed-no-drift",
+      "verdict": "observed-no-drift",
+      "mock_http_requests": 1,
+      "span_kinds": {
+        "CLIENT": 1,
+        "SERVER": 1
+      },
+      "instrumentation_scopes": [
+        "fallbacklens-mock-gateway",
+        "litellm"
+      ],
+      "external_sockets_allowed": 0,
+      "blocked_external_operations": 0,
+      "versions": {
+        "litellm": "1.104.2",
+        "opentelemetry-sdk": "1.45.1",
+        "opentelemetry-exporter-otlp-json-common": "0.66b1",
+        "respx": "0.23.1"
+      },
+      "report": {
+        "schema_version": 1,
+        "suite": "observed-trace-contract-v1",
+        "bindings_as_of": "2026-10-09",
+        "limits": "Observed logical calls only; retries can be hidden inside a span. Missing/sampled telemetry can hide drift. Not provider attempts, complete coverage, billed cost, model quality, or production safety.",
+        "summary": {
+          "requests": 1,
+          "observed-no-drift": 1,
+          "drift": 0,
+          "inconclusive": 0
+        },
+        "requests": [
+          {
+            "request": 1,
+            "contract": "tool-agent",
+            "verdict": "observed-no-drift",
+            "findings": [],
+            "observed_logical_calls": 1,
+            "nested_wrappers_removed": 0,
+            "inference_envelope_ms": 1591.424,
+            "call_threshold": 3,
+            "latency_threshold_ms": 60000.0,
+            "calls": [
+              {
+                "group": "primary",
+                "start_ms": 0.03882,
+                "duration_ms": 1591.424
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "case": "experimental-dedicated",
+      "repetition": 1,
+      "expected": "observed-no-drift",
+      "verdict": "observed-no-drift",
+      "mock_http_requests": 1,
+      "span_kinds": {
+        "CLIENT": 1,
+        "SERVER": 1
+      },
+      "instrumentation_scopes": [
+        "fallbacklens-mock-gateway",
+        "litellm"
+      ],
+      "external_sockets_allowed": 0,
+      "blocked_external_operations": 0,
+      "versions": {
+        "litellm": "1.104.2",
+        "opentelemetry-sdk": "1.45.1",
+        "opentelemetry-exporter-otlp-json-common": "0.66b1",
+        "respx": "0.23.1"
+      },
+      "report": {
+        "schema_version": 1,
+        "suite": "observed-trace-contract-v1",
+        "bindings_as_of": "2026-10-09",
+        "limits": "Observed logical calls only; retries can be hidden inside a span. Missing/sampled telemetry can hide drift. Not provider attempts, complete coverage, billed cost, model quality, or production safety.",
+        "summary": {
+          "requests": 1,
+          "observed-no-drift": 1,
+          "drift": 0,
+          "inconclusive": 0
+        },
+        "requests": [
+          {
+            "request": 1,
+            "contract": "tool-agent",
+            "verdict": "observed-no-drift",
+            "findings": [],
+            "observed_logical_calls": 1,
+            "nested_wrappers_removed": 0,
+            "inference_envelope_ms": 1742.569216,
+            "call_threshold": 3,
+            "latency_threshold_ms": 60000.0,
+            "calls": [
+              {
+                "group": "primary",
+                "start_ms": 0.142244,
+                "duration_ms": 1742.569216
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "case": "experimental-dedicated",
+      "repetition": 2,
+      "expected": "observed-no-drift",
+      "verdict": "observed-no-drift",
+      "mock_http_requests": 1,
+      "span_kinds": {
+        "CLIENT": 1,
+        "SERVER": 1
+      },
+      "instrumentation_scopes": [
+        "fallbacklens-mock-gateway",
+        "litellm"
+      ],
+      "external_sockets_allowed": 0,
+      "blocked_external_operations": 0,
+      "versions": {
+        "litellm": "1.104.2",
+        "opentelemetry-sdk": "1.45.1",
+        "opentelemetry-exporter-otlp-json-common": "0.66b1",
+        "respx": "0.23.1"
+      },
+      "report": {
+        "schema_version": 1,
+        "suite": "observed-trace-contract-v1",
+        "bindings_as_of": "2026-10-09",
+        "limits": "Observed logical calls only; retries can be hidden inside a span. Missing/sampled telemetry can hide drift. Not provider attempts, complete coverage, billed cost, model quality, or production safety.",
+        "summary": {
+          "requests": 1,
+          "observed-no-drift": 1,
+          "drift": 0,
+          "inconclusive": 0
+        },
+        "requests": [
+          {
+            "request": 1,
+            "contract": "tool-agent",
+            "verdict": "observed-no-drift",
+            "findings": [],
+            "observed_logical_calls": 1,
+            "nested_wrappers_removed": 0,
+            "inference_envelope_ms": 1664.932864,
+            "call_threshold": 3,
+            "latency_threshold_ms": 60000.0,
+            "calls": [
+              {
+                "group": "primary",
+                "start_ms": 0.11016,
+                "duration_ms": 1664.932864
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "case": "legacy-dedicated",
+      "repetition": 0,
+      "expected": "inconclusive",
+      "verdict": "inconclusive",
+      "mock_http_requests": 1,
+      "span_kinds": {
+        "INTERNAL": 2,
+        "SERVER": 1
+      },
+      "instrumentation_scopes": [
+        "fallbacklens-mock-gateway",
+        "litellm"
+      ],
+      "external_sockets_allowed": 0,
+      "blocked_external_operations": 0,
+      "versions": {
+        "litellm": "1.104.2",
+        "opentelemetry-sdk": "1.45.1",
+        "opentelemetry-exporter-otlp-json-common": "0.66b1",
+        "respx": "0.23.1"
+      },
+      "report": {
+        "schema_version": 1,
+        "suite": "observed-trace-contract-v1",
+        "bindings_as_of": "2026-10-09",
+        "limits": "Observed logical calls only; retries can be hidden inside a span. Missing/sampled telemetry can hide drift. Not provider attempts, complete coverage, billed cost, model quality, or production safety.",
+        "summary": {
+          "requests": 1,
+          "observed-no-drift": 0,
+          "drift": 0,
+          "inconclusive": 1
+        },
+        "requests": [
+          {
+            "request": 1,
+            "contract": "tool-agent",
+            "verdict": "inconclusive",
+            "findings": [
+              "NO_SUPPORTED_CALLS"
+            ],
+            "observed_logical_calls": 0,
+            "nested_wrappers_removed": 0,
+            "inference_envelope_ms": null,
+            "call_threshold": 3,
+            "latency_threshold_ms": 60000.0,
+            "calls": []
+          }
+        ]
+      }
+    },
+    {
+      "case": "legacy-dedicated",
+      "repetition": 1,
+      "expected": "inconclusive",
+      "verdict": "inconclusive",
+      "mock_http_requests": 1,
+      "span_kinds": {
+        "INTERNAL": 2,
+        "SERVER": 1
+      },
+      "instrumentation_scopes": [
+        "fallbacklens-mock-gateway",
+        "litellm"
+      ],
+      "external_sockets_allowed": 0,
+      "blocked_external_operations": 0,
+      "versions": {
+        "litellm": "1.104.2",
+        "opentelemetry-sdk": "1.45.1",
+        "opentelemetry-exporter-otlp-json-common": "0.66b1",
+        "respx": "0.23.1"
+      },
+      "report": {
+        "schema_version": 1,
+        "suite": "observed-trace-contract-v1",
+        "bindings_as_of": "2026-10-09",
+        "limits": "Observed logical calls only; retries can be hidden inside a span. Missing/sampled telemetry can hide drift. Not provider attempts, complete coverage, billed cost, model quality, or production safety.",
+        "summary": {
+          "requests": 1,
+          "observed-no-drift": 0,
+          "drift": 0,
+          "inconclusive": 1
+        },
+        "requests": [
+          {
+            "request": 1,
+            "contract": "tool-agent",
+            "verdict": "inconclusive",
+            "findings": [
+              "NO_SUPPORTED_CALLS"
+            ],
+            "observed_logical_calls": 0,
+            "nested_wrappers_removed": 0,
+            "inference_envelope_ms": null,
+            "call_threshold": 3,
+            "latency_threshold_ms": 60000.0,
+            "calls": []
+          }
+        ]
+      }
+    },
+    {
+      "case": "legacy-dedicated",
+      "repetition": 2,
+      "expected": "inconclusive",
+      "verdict": "inconclusive",
+      "mock_http_requests": 1,
+      "span_kinds": {
+        "INTERNAL": 2,
+        "SERVER": 1
+      },
+      "instrumentation_scopes": [
+        "fallbacklens-mock-gateway",
+        "litellm"
+      ],
+      "external_sockets_allowed": 0,
+      "blocked_external_operations": 0,
+      "versions": {
+        "litellm": "1.104.2",
+        "opentelemetry-sdk": "1.45.1",
+        "opentelemetry-exporter-otlp-json-common": "0.66b1",
+        "respx": "0.23.1"
+      },
+      "report": {
+        "schema_version": 1,
+        "suite": "observed-trace-contract-v1",
+        "bindings_as_of": "2026-10-09",
+        "limits": "Observed logical calls only; retries can be hidden inside a span. Missing/sampled telemetry can hide drift. Not provider attempts, complete coverage, billed cost, model quality, or production safety.",
+        "summary": {
+          "requests": 1,
+          "observed-no-drift": 0,
+          "drift": 0,
+          "inconclusive": 1
+        },
+        "requests": [
+          {
+            "request": 1,
+            "contract": "tool-agent",
+            "verdict": "inconclusive",
+            "findings": [
+              "NO_SUPPORTED_CALLS"
+            ],
+            "observed_logical_calls": 0,
+            "nested_wrappers_removed": 0,
+            "inference_envelope_ms": null,
+            "call_threshold": 3,
+            "latency_threshold_ms": 60000.0,
+            "calls": []
+          }
+        ]
+      }
+    },
+    {
+      "case": "experimental-collapsed",
+      "repetition": 0,
+      "expected": "inconclusive",
+      "verdict": "inconclusive",
+      "mock_http_requests": 1,
+      "span_kinds": {
+        "SERVER": 1
+      },
+      "instrumentation_scopes": [
+        "fallbacklens-mock-gateway"
+      ],
+      "external_sockets_allowed": 0,
+      "blocked_external_operations": 0,
+      "versions": {
+        "litellm": "1.104.2",
+        "opentelemetry-sdk": "1.45.1",
+        "opentelemetry-exporter-otlp-json-common": "0.66b1",
+        "respx": "0.23.1"
+      },
+      "report": {
+        "schema_version": 1,
+        "suite": "observed-trace-contract-v1",
+        "bindings_as_of": "2026-10-09",
+        "limits": "Observed logical calls only; retries can be hidden inside a span. Missing/sampled telemetry can hide drift. Not provider attempts, complete coverage, billed cost, model quality, or production safety.",
+        "summary": {
+          "requests": 1,
+          "observed-no-drift": 0,
+          "drift": 0,
+          "inconclusive": 1
+        },
+        "requests": [
+          {
+            "request": 1,
+            "contract": "tool-agent",
+            "verdict": "inconclusive",
+            "findings": [
+              "NO_SUPPORTED_CALLS"
+            ],
+            "observed_logical_calls": 0,
+            "nested_wrappers_removed": 0,
+            "inference_envelope_ms": null,
+            "call_threshold": 3,
+            "latency_threshold_ms": 60000.0,
+            "calls": []
+          }
+        ]
+      }
+    },
+    {
+      "case": "experimental-collapsed",
+      "repetition": 1,
+      "expected": "inconclusive",
+      "verdict": "inconclusive",
+      "mock_http_requests": 1,
+      "span_kinds": {
+        "SERVER": 1
+      },
+      "instrumentation_scopes": [
+        "fallbacklens-mock-gateway"
+      ],
+      "external_sockets_allowed": 0,
+      "blocked_external_operations": 0,
+      "versions": {
+        "litellm": "1.104.2",
+        "opentelemetry-sdk": "1.45.1",
+        "opentelemetry-exporter-otlp-json-common": "0.66b1",
+        "respx": "0.23.1"
+      },
+      "report": {
+        "schema_version": 1,
+        "suite": "observed-trace-contract-v1",
+        "bindings_as_of": "2026-10-09",
+        "limits": "Observed logical calls only; retries can be hidden inside a span. Missing/sampled telemetry can hide drift. Not provider attempts, complete coverage, billed cost, model quality, or production safety.",
+        "summary": {
+          "requests": 1,
+          "observed-no-drift": 0,
+          "drift": 0,
+          "inconclusive": 1
+        },
+        "requests": [
+          {
+            "request": 1,
+            "contract": "tool-agent",
+            "verdict": "inconclusive",
+            "findings": [
+              "NO_SUPPORTED_CALLS"
+            ],
+            "observed_logical_calls": 0,
+            "nested_wrappers_removed": 0,
+            "inference_envelope_ms": null,
+            "call_threshold": 3,
+            "latency_threshold_ms": 60000.0,
+            "calls": []
+          }
+        ]
+      }
+    },
+    {
+      "case": "experimental-collapsed",
+      "repetition": 2,
+      "expected": "inconclusive",
+      "verdict": "inconclusive",
+      "mock_http_requests": 1,
+      "span_kinds": {
+        "SERVER": 1
+      },
+      "instrumentation_scopes": [
+        "fallbacklens-mock-gateway"
+      ],
+      "external_sockets_allowed": 0,
+      "blocked_external_operations": 0,
+      "versions": {
+        "litellm": "1.104.2",
+        "opentelemetry-sdk": "1.45.1",
+        "opentelemetry-exporter-otlp-json-common": "0.66b1",
+        "respx": "0.23.1"
+      },
+      "report": {
+        "schema_version": 1,
+        "suite": "observed-trace-contract-v1",
+        "bindings_as_of": "2026-10-09",
+        "limits": "Observed logical calls only; retries can be hidden inside a span. Missing/sampled telemetry can hide drift. Not provider attempts, complete coverage, billed cost, model quality, or production safety.",
+        "summary": {
+          "requests": 1,
+          "observed-no-drift": 0,
+          "drift": 0,
+          "inconclusive": 1
+        },
+        "requests": [
+          {
+            "request": 1,
+            "contract": "tool-agent",
+            "verdict": "inconclusive",
+            "findings": [
+              "NO_SUPPORTED_CALLS"
+            ],
+            "observed_logical_calls": 0,
+            "nested_wrappers_removed": 0,
+            "inference_envelope_ms": null,
+            "call_threshold": 3,
+            "latency_threshold_ms": 60000.0,
+            "calls": []
+          }
+        ]
+      }
+    }
+  ],
+  "limits": "Actual instrumentation with mocked completion, not real gateway fallback, paid provider inference, streaming or production traces."
+}

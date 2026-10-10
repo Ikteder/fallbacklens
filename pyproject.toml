@@ -4,17 +4,26 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "fallbacklens"
-version = "0.2.0"
+version = "0.3.0"
 description = "Offline contract auditor and failure replayer for LLM fallback policies"
 readme = "README.md"
 requires-python = ">=3.10"
 license = "MIT"
 authors = [{name = "Ikteder"}]
 dependencies = ["PyYAML>=6.0,<7"]
+
 classifiers = [
   "Development Status :: 3 - Alpha",
   "Programming Language :: Python :: 3",
   "Topic :: Software Development :: Quality Assurance",
+]
+
+[project.optional-dependencies]
+interop = [
+  "litellm==1.104.2",
+  "opentelemetry-sdk==1.45.1",
+  "opentelemetry-exporter-otlp-json-common==0.66b1",
+  "respx==0.23.1",
 ]
 
 [project.scripts]

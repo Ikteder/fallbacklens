@@ -64,6 +64,33 @@ four no-observed-drift, five drift and seven inconclusive cases. It targets impl
 rules, not held-out production data. [Evidence](docs/experiments/trace-comparison-v1.json)
 and [primary reference review](docs/notes/2026-10-09-trace-reference-review.md) are dated.
 
+### Actual LiteLLM instrumentation, no provider calls
+
+Version0.3 adds an optional pinned mock-only check:
+
+```bash
+python -m pip install -e '.[interop]'
+fallbacklens interop-run --repetitions 3 --output artifacts/trace-interop
+python -m unittest discover -s integration_tests -v
+```
+
+LiteLLM1.104.2, OTelSDK1.45.1, OTLPJSON encoder0.66b1 and respx0.23.1 emitted actual
+instrumentation, encoded by the official JSON encoder. Nine local cases matched all
+expected verdicts; each made exactly one mocked HTTP request with outbound TCP blocked.
+Base45 tests passed. No external exporter, inherited provider credentials or paid model.
+
+| Tracing configuration | Spans per case | Audit result |
+|---|---|---|
+| Experimental + dedicated request | CLIENT1 + SERVER1 | observed-no-drift |
+| Legacy + dedicated request | INTERNAL2 + SERVER1 | inconclusive |
+| Experimental + collapsed parent | SERVER1 | inconclusive |
+
+[Evidence and limitations](docs/experiments/2026-10-09-litellm-interop.md). This validates
+a mocked SDK completion, not live Router fallback dispatch, provider attempts, streaming,
+real model quality or compatibility with every release. The base install remains small;
+the optional integration adds substantial SDK dependencies. Only minimized synthetic
+evidence is published; raw generated spans remain local.
+
 ## Quick start
 
 Requirements: Python 3.10 or newer.
