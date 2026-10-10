@@ -48,3 +48,10 @@ equality, corpus/evidence equality, README no-em-dash and Git whitespace passed.
 browser context may retain earlier host animation errors; no zero-console claim.
 
 Actual provider costUSD0.00. Remaining publication/CI evidence appended after observed.
+
+Published source253ef3dd0098f7bceae7693598df8580c9edeb17, independently updated workflow
+d11d173d71ccc97abfb21cd18ebe91a5bd5be23b, local fast-forward without history rewrite.
+[Public CI38016091268](https://github.com/Ikteder/fallbacklens/actions/runs/38016091268)
+passed Python3.10/3.12/3.14, including39tests, trace comparison and trace CLI, original
+static/replay commands, dependency audit and build. Final clean wheel reinstalled after
+output-protection addition:16/16 trace comparison,3/16 baseline and serial request passed.
