@@ -35,3 +35,11 @@ raw minimized evidence equals current evaluation, SVG equals current render exac
 privacy sentinels absent. Valid distinct CLI outputs still worked: static0errors/
 0warnings, configured$0.048/10000ms; replay2/2; serial trace190ms observed-no-drift.
 These are synthetic assumptions/results, not actual provider prices/latency guarantees.
+
+Final documentation mainf97813cf47fde687959b2a6e8792df041918b67d and
+[CI38018169434](https://github.com/Ikteder/fallbacklens/actions/runs/38018169434) verified
+allfourjobs. Subsequent verification-only report-safety test supplies script-like model,
+contract/date/source labels: HTML visible text and embedded JSON remain escaped, SVG
+contains no script/img element and preserves literal label text.62 local tests ran
+1.395s,61passed and the same Windows symlink-permission skip. No renderer implementation
+change; no claim of a complete XSS audit or protection from hostile report dictionaries.
