@@ -1,0 +1,26 @@
+# Preserve CLI input and report bytes
+
+2026-10-09, seed20261009, Python3.14.7, same manual continuation, costUSD0.00.
+Primary path identity documentation and current three-system research recorded in spec.
+
+Actual clean wheel0.3.1ran scripts/output_regression.py only on disposable temp copies.
+audit-input:exit0,input_preserved=false. audit-output-collision:exit0,input preserved,
+output_created=true; JSON report had been replaced by HTML.0/2controlled rejections.
+No user/project source input was overwritten during these reproductions.
+
+Current script:2/2controlled rejections,exit2,input preserved in both; duplicate-output
+case creates no new report.61 core tests ran1.251s:60passed,1real symlink test skipped
+because Windows lacks symbolic-link creation permission. Hard-link tests all passed.
+Separate clean base wheel61 tests ran, same skip; dependency consistency, lint,
+compile and0.3.2sdist/wheel build passed. pip-audit found no known dependency advisories,
+skipped local package itself. Public CI recorded after completion. Full mocked optional integration is
+unchanged and remains independently gated. No upstream code copied or PR; independent
+MIT patch. This is preflight detection, not race-free permissions or atomic multi-file IO.
+
+```
+OLD_CLEAN_WHEEL_PYTHON scripts/output_regression.py docs/experiments/output-preservation-baseline-v031.json
+python scripts/output_regression.py docs/experiments/output-preservation-v032.json
+python -m unittest discover -s tests -q
+python -m ruff check src tests scripts integration_tests
+python -m build
+```

@@ -1,0 +1,23 @@
+{
+  "package_version": "0.3.1",
+  "suite": "cli-output-preservation-v1",
+  "seed": 20261009,
+  "cases": 2,
+  "controlled_rejections": 0,
+  "results": [
+    {
+      "case": "audit-input",
+      "exit_code": 0,
+      "input_preserved": false,
+      "output_created": null,
+      "controlled_rejection": false
+    },
+    {
+      "case": "audit-output-collision",
+      "exit_code": 0,
+      "input_preserved": true,
+      "output_created": true,
+      "controlled_rejection": false
+    }
+  ]
+}

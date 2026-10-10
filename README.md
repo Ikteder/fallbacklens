@@ -92,6 +92,11 @@ before a success report. Optional null remains unknown metadata. The original cl
 0.3.1 rejects20/20 cleanly. See [numeric evidence](docs/experiments/2026-10-09-finite-exposure.md).
 Numbers are binary64, not exact currency or a prediction of provider bills/SLOs.
 
+Version0.3.2 checks every file-reading command's report destinations before parsing.
+Inputs and different output formats cannot share a resolved path or existing hard link.
+Collision returns exit2 and preserves bytes; unrelated report replacement stays allowed.
+This preflight is not protection against hostile concurrent filesystem changes.
+
 | Tracing configuration | Spans per case | Audit result |
 |---|---|---|
 | Experimental + dedicated request | CLIENT1 + SERVER1 | observed-no-drift |

@@ -75,9 +75,31 @@ def build_parser() -> argparse.ArgumentParser:
     return parser
 
 
+def _preflight_outputs(args: argparse.Namespace) -> None:
+    inputs = [
+        Path(value).resolve()
+        for field in ("config", "profile", "trace", "bindings", "scenarios", "cases")
+        if (value := getattr(args, field, None))
+    ]
+    outputs = [
+        Path(value).resolve()
+        for field in ("json_path", "html_path", "svg_path")
+        if (value := getattr(args, field, None))
+    ]
+    for index, output in enumerate(outputs):
+        for other in inputs + outputs[:index]:
+            if output == other or (
+                output.exists() and other.exists() and output.samefile(other)
+            ):
+                raise ValueError(
+                    "outputs must be distinct and must not overwrite input files"
+                )
+
+
 def main(argv: list[str] | None = None) -> int:
     args = build_parser().parse_args(argv)
     try:
+        _preflight_outputs(args)
         if args.command == "interop-run":
             result = run_interop(args.output, args.repetitions)
             print(
@@ -102,19 +124,6 @@ def main(argv: list[str] | None = None) -> int:
                 write_text(args.svg_path, render_trace_benchmark_svg(result))
             return 0 if result["correct"] == result["cases"] else 1
         if args.command == "trace-audit":
-            inputs = {
-                Path(value).resolve()
-                for value in (args.config, args.profile, args.trace, args.bindings)
-            }
-            outputs = [
-                Path(value).resolve()
-                for value in (args.json_path, args.html_path)
-                if value
-            ]
-            if len(set(outputs)) != len(outputs) or inputs.intersection(outputs):
-                raise ValueError(
-                    "trace outputs must be distinct and must not overwrite input files"
-                )
             result = audit_traces(
                 load_litellm_config(args.config),
                 load_profile(args.profile),

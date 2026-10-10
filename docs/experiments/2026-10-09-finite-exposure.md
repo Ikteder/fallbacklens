@@ -27,7 +27,9 @@ integration passed34.230s. Original static10/10vs2/10, trace16/16vs3/16, replay2
 green. Ruff/compile/dependency consistency/vulnerability audit and0.3.1sdist/wheel build
 passed; pip-audit skipped local project, found no known dependency advisories.
 Fresh clean base wheel passed55 tests, pip consistency and20/20 numeric rejection
-cases without LiteLLM installed. Public CI recorded after completion. Corpus is authored,
+cases without LiteLLM installed. Published0.3.1sourcecefff394f6407f78d2e0fa23dff2c06523aa1e7c,
+remote verified. [CI38017707694](https://github.com/Ikteder/fallbacklens/actions/runs/38017707694)
+passed allthree base jobs and the pinned optional mocked integration job. Corpus is authored,
 implementation-aligned and small, no real traffic.
 Binary64 range/precision, intermediate product overflow and other graph/input limits
 remain explicit boundaries. No upstream code copied, no PR or acceptance claim.
