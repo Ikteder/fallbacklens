@@ -21,7 +21,7 @@ jobs:
           python-version: ${{ matrix.python-version }}
       - run: python -m pip install --upgrade pip "setuptools>=83" build pip-audit ruff
       - run: python -m pip install -e .
-      - run: python -m ruff check src tests scripts
+      - run: python -m ruff check src tests scripts integration_tests
       - run: python -m unittest discover -s tests -v
       - run: python -m compileall -q src tests scripts
       - run: python -m pip check
@@ -31,4 +31,19 @@ jobs:
       - run: fallbacklens simulate examples/litellm-safe.yaml --scenarios examples/scenarios.json --json artifacts/scenario-replay.json
       - run: fallbacklens trace-benchmark benchmarks/trace-cases-v1.json --json artifacts/trace-comparison.json --svg artifacts/trace-comparison.svg
       - run: fallbacklens trace-audit examples/trace-policy.json --profile examples/trace-profile.json --trace examples/trace-otlp.json --bindings examples/trace-bindings.json --json artifacts/trace-audit.json --html artifacts/trace-audit.html
+      - run: python -m build
+
+  interop:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - run: python -m pip install --upgrade pip "setuptools>=83" build pip-audit ruff
+      - run: python -m pip install -e '.[interop]'
+      - run: python -m unittest discover -s integration_tests -v
+      - run: fallbacklens interop-run --repetitions 1 --output artifacts/litellm-interop
+      - run: python -m pip check
+      - run: python -m pip_audit
       - run: python -m build
