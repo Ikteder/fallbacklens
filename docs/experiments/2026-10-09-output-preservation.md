@@ -13,7 +13,12 @@ case creates no new report.61 core tests ran1.251s:60passed,1real symlink test s
 because Windows lacks symbolic-link creation permission. Hard-link tests all passed.
 Separate clean base wheel61 tests ran, same skip; dependency consistency, lint,
 compile and0.3.2sdist/wheel build passed. pip-audit found no known dependency advisories,
-skipped local package itself. Public CI recorded after completion. Full mocked optional integration is
+skipped local package itself. Published source2428b1edb129ed9296e75cc3fd2094df8e237ef4,
+remote verified. [CI38017997193](https://github.com/Ikteder/fallbacklens/actions/runs/38017997193)
+passed allfourjobs. Linux3.10/3.12/3.14 each61passed with real symlink cases, no skips;
+times0.436/0.401/0.382s are runner observations, not a performance comparison. Optional
+integration passed11.881s plus CLI3/3 mocked expectedmatches, actualprovidercost0.
+Full mocked optional integration is
 unchanged and remains independently gated. No upstream code copied or PR; independent
 MIT patch. This is preflight detection, not race-free permissions or atomic multi-file IO.
 
@@ -24,3 +29,9 @@ python -m unittest discover -s tests -q
 python -m ruff check src tests scripts integration_tests
 python -m build
 ```
+
+Final post-publication cross-check: the16case corpus equals its authored generator,
+raw minimized evidence equals current evaluation, SVG equals current render exactly,
+privacy sentinels absent. Valid distinct CLI outputs still worked: static0errors/
+0warnings, configured$0.048/10000ms; replay2/2; serial trace190ms observed-no-drift.
+These are synthetic assumptions/results, not actual provider prices/latency guarantees.

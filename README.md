@@ -22,7 +22,7 @@ Current LiteLLM source was inspected at commit `50f5cc9bbb55bacecd3c0f07623566df
 
 ## What is original here
 
-FallbackLens does not rebuild provider access, load balancing, or learned model selection. Its contribution is a reviewable preflight layer that combines four dimensions normally handled separately:
+FallbackLens does not rebuild provider access, load balancing, or learned model selection. Its contribution is a reviewable preflight layer that combines five dimensions normally handled separately:
 
 1. Graph safety across general, context-window, and content-policy fallback edges.
 2. Path-wide workload contracts for tools, structured output, context, and retention.
@@ -83,6 +83,12 @@ The pinned integration also passed [public CI](https://github.com/Ikteder/fallba
 on Python3.12 alongside the three-version base matrix. This is mocked instrumentation,
 not live Router fallback or model capability validation.
 
+| Tracing configuration | Spans per case | Audit result |
+|---|---|---|
+| Experimental + dedicated request | CLIENT1 + SERVER1 | observed-no-drift |
+| Legacy + dedicated request | INTERNAL2 + SERVER1 | inconclusive |
+| Experimental + collapsed parent | SERVER1 | inconclusive |
+
 ### Finite assumptions
 
 Version0.3.1 rejects NaN, infinity and unrepresentable price/latency/budget numbers in
@@ -97,11 +103,11 @@ Inputs and different output formats cannot share a resolved path or existing har
 Collision returns exit2 and preserves bytes; unrelated report replacement stays allowed.
 This preflight is not protection against hostile concurrent filesystem changes.
 
-| Tracing configuration | Spans per case | Audit result |
-|---|---|---|
-| Experimental + dedicated request | CLIENT1 + SERVER1 | observed-no-drift |
-| Legacy + dedicated request | INTERNAL2 + SERVER1 | inconclusive |
-| Experimental + collapsed parent | SERVER1 | inconclusive |
+Current 0.3.2 verification: 61 tests passed on each Linux Python 3.10, 3.12 and 3.14
+job, including real symlink cases. Windows local and clean-wheel checks passed 60,
+with one symlink-permission skip; hard links were tested. The optional mock integration
+also passed. See [public CI](https://github.com/Ikteder/fallbacklens/actions/runs/38017997193)
+and [output-preservation evidence](docs/experiments/2026-10-09-output-preservation.md).
 
 [Evidence and limitations](docs/experiments/2026-10-09-litellm-interop.md). This validates
 a mocked SDK completion, not live Router fallback dispatch, provider attempts, streaming,
