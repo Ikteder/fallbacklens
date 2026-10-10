@@ -77,7 +77,20 @@ python -m unittest discover -s integration_tests -v
 LiteLLM1.104.2, OTelSDK1.45.1, OTLPJSON encoder0.66b1 and respx0.23.1 emitted actual
 instrumentation, encoded by the official JSON encoder. Nine local cases matched all
 expected verdicts; each made exactly one mocked HTTP request with outbound TCP blocked.
-Base45 tests passed. No external exporter, inherited provider credentials or paid model.
+Version0.3 base45 tests passed. No external exporter, inherited provider credentials or paid model.
+
+The pinned integration also passed [public CI](https://github.com/Ikteder/fallbacklens/actions/runs/38017289936)
+on Python3.12 alongside the three-version base matrix. This is mocked instrumentation,
+not live Router fallback or model capability validation.
+
+### Finite assumptions
+
+Version0.3.1 rejects NaN, infinity and unrepresentable price/latency/budget numbers in
+both YAML and JSON profiles. Derived arithmetic overflow also fails as input error
+before a success report. Optional null remains unknown metadata. The original clean
+0.3 wheel rejected5/20 numeric edge cases cleanly, accepted10 and crashed on5;
+0.3.1 rejects20/20 cleanly. See [numeric evidence](docs/experiments/2026-10-09-finite-exposure.md).
+Numbers are binary64, not exact currency or a prediction of provider bills/SLOs.
 
 | Tracing configuration | Spans per case | Audit result |
 |---|---|---|

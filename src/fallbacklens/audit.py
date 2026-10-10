@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import math
 from collections import deque
 from collections.abc import Iterable
 
@@ -189,15 +190,25 @@ def _audit_contract(
             if facts.input_usd_per_million is None or facts.output_usd_per_million is None:
                 cost = None
             elif cost is not None:
-                per_attempt = (
-                    contract.expected_input_tokens * facts.input_usd_per_million
-                    + contract.expected_output_tokens * facts.output_usd_per_million
-                ) / 1_000_000
-                cost += per_attempt * attempts_per_node
+                try:
+                    per_attempt = (
+                        contract.expected_input_tokens * facts.input_usd_per_million
+                        + contract.expected_output_tokens * facts.output_usd_per_million
+                    ) / 1_000_000
+                    cost += per_attempt * attempts_per_node
+                except OverflowError:
+                    raise ValueError("cost exposure exceeds finite arithmetic range") from None
+                if not math.isfinite(cost):
+                    raise ValueError("cost exposure exceeds finite arithmetic range")
             if facts.latency_p95_ms is None:
                 latency = None
             elif latency is not None:
-                latency += facts.latency_p95_ms * attempts_per_node
+                try:
+                    latency += facts.latency_p95_ms * attempts_per_node
+                except OverflowError:
+                    raise ValueError("latency exposure exceeds finite arithmetic range") from None
+                if not math.isfinite(latency):
+                    raise ValueError("latency exposure exceeds finite arithmetic range")
         path_metrics.append((path, attempts, cost, latency))
 
     worst_attempt_entry = max(path_metrics, key=lambda item: item[1])

@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+import math
 from pathlib import Path
 from typing import Any
 
@@ -15,12 +16,16 @@ def _read_mapping(path: str | Path) -> dict[str, Any]:
     input_path = Path(path)
     text = input_path.read_text(encoding="utf-8")
     if input_path.suffix.lower() == ".json":
-        data = json.loads(text)
+        data = json.loads(text, parse_constant=_reject_json_constant)
     else:
         data = yaml.safe_load(text)
     if not isinstance(data, dict):
         raise ValueError(f"{input_path}: root must be an object")
     return data
+
+
+def _reject_json_constant(value: str) -> None:
+    raise ValueError("non-finite JSON constants are not supported")
 
 
 def policy_from_data(data: dict[str, Any]) -> Policy:
@@ -184,9 +189,7 @@ def _optional_number(raw: dict[str, Any], key: str, name: str) -> float | None:
     value = raw.get(key)
     if value is None:
         return None
-    if not isinstance(value, (int, float)) or isinstance(value, bool) or value < 0:
-        raise ValueError(f"models.{name}.{key} must be a non-negative number or null")
-    return float(value)
+    return _finite_nonnegative(value, f"models.{name}.{key}")
 
 
 def _optional_bool(raw: dict[str, Any], key: str, name: str) -> bool | None:
@@ -221,6 +224,17 @@ def _required_nonnegative_int(raw: dict[str, Any], key: str, index: int) -> int:
 
 def _required_nonnegative_number(raw: dict[str, Any], key: str, index: int) -> float:
     value = raw.get(key)
-    if not isinstance(value, (int, float)) or isinstance(value, bool) or value < 0:
-        raise ValueError(f"contracts[{index}].{key} must be a non-negative number")
-    return float(value)
+    return _finite_nonnegative(value, f"contracts[{index}].{key}")
+
+
+def _finite_nonnegative(value: Any, label: str) -> float:
+    error = f"{label} must be a finite non-negative number"
+    if not isinstance(value, (int, float)) or isinstance(value, bool):
+        raise ValueError(error)
+    try:
+        result = float(value)
+    except OverflowError:
+        raise ValueError(error) from None
+    if not math.isfinite(result) or result < 0:
+        raise ValueError(error)
+    return result

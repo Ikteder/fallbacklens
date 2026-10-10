@@ -48,4 +48,11 @@ current tests without LiteLLM installed, pip consistency and16/16 trace cases. F
 45 tests passed in1.198s. Timeout regressions preserve a content-free failure receipt
 without a partial success report. Desktop1265px and narrow375px report had9 rows and no page overflow; the narrow
 table scrolls internally. No claim about zero browser-console errors on reused QA tabs.
-Optional integration CI and final publication recorded after they complete.
+Published source2a983eec78b1c52d513de9901afe55cc30fe8c79 and workflow
+52313b7caec2c609be1930d85d66267814ac3bc2. Public
+[CI38017289936](https://github.com/Ikteder/fallbacklens/actions/runs/38017289936)
+passed allthree base Python3.10/3.12/3.14 jobs and the separate Python3.12 optional job:
+actual mocked integration test, CLI three-case run, dependency audit and package build.
+Final revised clean no-LiteLLM wheel passed45 core tests. Remote SHA verified before
+the subsequent finite-assumption patch. This is compatibility evidence only for the
+pinned settings, not all versions or provider reliability.

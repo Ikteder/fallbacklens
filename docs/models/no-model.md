@@ -22,3 +22,8 @@ The main risk is false confidence from incomplete or stale operator metadata. Un
 ## Providers and cost
 
 No provider was called. Actual provider cost for development and verification was USD 0.00.
+
+2026-10-09 follow-up:0.3 optional SDK verification uses only synthetic mocked responses
+with a request model string, not inference.0.3.1 finite-number validation uses no model.
+Rejecting non-finite values prevents one measured false-confidence failure; it does not
+validate the truth/freshness of supplied prices, capabilities or retention metadata.

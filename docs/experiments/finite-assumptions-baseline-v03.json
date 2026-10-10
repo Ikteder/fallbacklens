@@ -1,0 +1,113 @@
+{
+  "schema_version": 1,
+  "suite": "finite-assumptions-v1",
+  "seed": 20261009,
+  "package_version": "0.3.0",
+  "cases": 20,
+  "controlled_rejections": 5,
+  "accepted": 10,
+  "uncontrolled_overflows": 5,
+  "results": [
+    {
+      "field": "model.input_usd_per_million",
+      "input": "nan",
+      "observed": "accepted"
+    },
+    {
+      "field": "model.input_usd_per_million",
+      "input": "positive_inf",
+      "observed": "accepted"
+    },
+    {
+      "field": "model.input_usd_per_million",
+      "input": "negative_inf",
+      "observed": "controlled_rejection"
+    },
+    {
+      "field": "model.input_usd_per_million",
+      "input": "huge_integer",
+      "observed": "uncontrolled_overflow"
+    },
+    {
+      "field": "model.output_usd_per_million",
+      "input": "nan",
+      "observed": "accepted"
+    },
+    {
+      "field": "model.output_usd_per_million",
+      "input": "positive_inf",
+      "observed": "accepted"
+    },
+    {
+      "field": "model.output_usd_per_million",
+      "input": "negative_inf",
+      "observed": "controlled_rejection"
+    },
+    {
+      "field": "model.output_usd_per_million",
+      "input": "huge_integer",
+      "observed": "uncontrolled_overflow"
+    },
+    {
+      "field": "model.latency_p95_ms",
+      "input": "nan",
+      "observed": "accepted"
+    },
+    {
+      "field": "model.latency_p95_ms",
+      "input": "positive_inf",
+      "observed": "accepted"
+    },
+    {
+      "field": "model.latency_p95_ms",
+      "input": "negative_inf",
+      "observed": "controlled_rejection"
+    },
+    {
+      "field": "model.latency_p95_ms",
+      "input": "huge_integer",
+      "observed": "uncontrolled_overflow"
+    },
+    {
+      "field": "contract.max_cost_usd",
+      "input": "nan",
+      "observed": "accepted"
+    },
+    {
+      "field": "contract.max_cost_usd",
+      "input": "positive_inf",
+      "observed": "accepted"
+    },
+    {
+      "field": "contract.max_cost_usd",
+      "input": "negative_inf",
+      "observed": "controlled_rejection"
+    },
+    {
+      "field": "contract.max_cost_usd",
+      "input": "huge_integer",
+      "observed": "uncontrolled_overflow"
+    },
+    {
+      "field": "contract.max_latency_ms",
+      "input": "nan",
+      "observed": "accepted"
+    },
+    {
+      "field": "contract.max_latency_ms",
+      "input": "positive_inf",
+      "observed": "accepted"
+    },
+    {
+      "field": "contract.max_latency_ms",
+      "input": "negative_inf",
+      "observed": "controlled_rejection"
+    },
+    {
+      "field": "contract.max_latency_ms",
+      "input": "huge_integer",
+      "observed": "uncontrolled_overflow"
+    }
+  ],
+  "limits": "Authored numeric edge cases, not independent gateway traffic or a model benchmark."
+}

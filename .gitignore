@@ -10,3 +10,4 @@ artifacts/*-console.json
 artifacts/trace-*
 artifacts/policy-current.json
 artifacts/replay-current.json
+artifacts/*031.json
