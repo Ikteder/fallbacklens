@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 320" role="img" aria-labelledby="title">
+<title id="title">Synthetic observed trace contract comparison</title><rect width="960" height="320" rx="16" fill="#101827"/>
+<g font-family="system-ui,sans-serif" fill="#e2e8f0"><text x="30" y="48" font-size="25">Labels are not a fallback contract</text>
+<text x="30" y="85" font-size="16">Authored OTLP fixtures: routing, latency, nesting, missing evidence and privacy.</text>
+<text x="30" y="135" font-size="17">Count-only</text><rect x="200" y="110" width="120" height="36" fill="#fb923c" rx="5"/>
+<text x="340" y="135" font-size="17">3/16</text>
+<text x="30" y="195" font-size="17">Trace contract</text><rect x="200" y="170" width="640" height="36" fill="#5eead4" rx="5"/>
+<text x="860" y="195" font-size="17">16/16</text>
+<text x="30" y="250" font-size="16">A logical inference span may include retries. Missing spans can hide drift.</text>
+<text x="30" y="281" font-size="14">Not a provider benchmark, actual billed cost, complete telemetry or production-safety proof.</text></g></svg>

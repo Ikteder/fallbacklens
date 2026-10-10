@@ -1,8 +1,10 @@
 # FallbackLens
 
+![Observed trace contract comparison on 16 authored OTLP cases](docs/assets/trace-comparison-v1.svg)
+
 ![FallbackLens benchmark comparing shape-only validation with route-contract auditing](docs/assets/policy-benchmark.svg)
 
-FallbackLens audits LLM retry and fallback policies before they reach production. It imports a LiteLLM YAML route graph, joins it with explicit model facts and workload contracts, then checks graph finiteness, capability preservation, context capacity, privacy requirements, and conservative attempt, cost, and latency exposure. It can also replay declared failures without calling a model provider.
+FallbackLens audits LLM retry and fallback policies before they reach production. It imports a LiteLLM YAML route graph, joins it with explicit model facts and workload contracts, then checks graph finiteness, capability preservation, context capacity, privacy requirements, and conservative attempt, cost, and latency exposure. Version 0.2 also compares bound OTLP JSON inference subtrees with configured routes and latency thresholds, without exporting prompts, credentials, raw span names or IDs. It can replay declared failures without calling a model provider.
 
 The intended user is an AI platform engineer who needs evidence that a fallback still satisfies an agent's contract. FallbackLens is not a gateway, a model selector, or a claim that static linting proves production reliability.
 
@@ -26,6 +28,41 @@ FallbackLens does not rebuild provider access, load balancing, or learned model 
 2. Path-wide workload contracts for tools, structured output, context, and retention.
 3. Conservative attempt, cost, and p95-latency exposure using dated operator facts.
 4. Bounded deterministic failure replay with portable JSON traces.
+5. Content-minimized observed trace reconciliation, with explicit scope/root bindings and inconclusive verdicts for missing or ambiguous evidence.
+
+## Observed trace contracts
+
+```bash
+fallbacklens trace-audit examples/trace-policy.json \
+  --profile examples/trace-profile.json \
+  --trace examples/trace-otlp.json --bindings examples/trace-bindings.json \
+  --json artifacts/trace-report.json --html artifacts/trace-report.html
+fallbacklens trace-benchmark benchmarks/trace-cases-v1.json \
+  --json artifacts/trace-comparison.json --svg artifacts/trace-comparison.svg
+```
+
+The demo binds one synthetic gateway request and observes `primary -> secondary`, two
+logical inference calls and a 190 ms inference envelope: `observed-no-drift`. This is
+not proof of complete telemetry, actual provider attempts, bills or production safety.
+The current [OTel logical-span semantics](https://github.com/open-telemetry/semantic-conventions-genai/blob/main/docs/gen-ai/gen-ai-spans.md)
+explicitly allow retries inside one span. Missing or sampled spans can hide drift.
+
+Use operator-owned [bindings](examples/trace-bindings.json), not guessed trace grouping.
+Only selected instrumentation scopes and CLIENT inference operations are supported.
+Nested same-group wrappers are suppressed; different-group nesting, parallel calls,
+missing parents/models and flattened SERVER-only telemetry are inconclusive. A scope
+allowlist is an operator assumption, not an automatic integration-compatibility proof.
+See [trace format and interpretation](docs/decisions/2026-10-09-observed-trace-contracts.md).
+
+| Synthetic trace comparison | Correct verdicts |
+|---|---:|
+| Count-all-semantic-spans baseline | 3 / 16 |
+| Bound trace contract audit | 16 / 16 |
+
+All 39 local tests passed, including the original 15. The 16-case authored corpus has
+four no-observed-drift, five drift and seven inconclusive cases. It targets implemented
+rules, not held-out production data. [Evidence](docs/experiments/trace-comparison-v1.json)
+and [primary reference review](docs/notes/2026-10-09-trace-reference-review.md) are dated.
 
 ## Quick start
 
@@ -150,7 +187,7 @@ GitHub Actions also passed the complete suite, audit, replay, comparison, depend
 
 ## Limitations
 
-- Version 0.1 imports only the listed LiteLLM routing fields.
+- Static routing import still supports only the listed LiteLLM routing fields.
 - Group-level facts do not model different deployments inside one model group.
 - Exposure assumes every configured attempt consumes the declared full token and p95-latency amount. Real failures may be cheaper, faster, slower, or billed differently.
 - Static capability and retention facts can become stale.
@@ -160,7 +197,7 @@ GitHub Actions also passed the complete suite, audit, replay, comparison, depend
 
 ## Best next improvement
 
-Add trace import for LiteLLM/OpenTelemetry events, compare declared bounds with observed attempts and latency, and flag semantic drift between the configured graph and real gateway behavior while keeping prompts and credentials out of reports.
+Validate trace bindings and wrapper suppression against independently captured, permission-safe LiteLLM exports. Add explicit versioned instrumentation profiles and a separate provider-attempt evidence layer where retries are actually observable, without inferring them from logical spans.
 
 ## Project records
 

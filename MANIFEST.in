@@ -2,4 +2,6 @@ include LICENSE README.md CONTRIBUTING.md
 recursive-include benchmarks *.json
 recursive-include examples *.json *.yaml
 recursive-include docs *.md *.svg
+recursive-include docs/experiments *.json
+recursive-include scripts *.py
 recursive-include tests *.py

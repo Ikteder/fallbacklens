@@ -7,3 +7,6 @@ __pycache__/
 .pytest_cache/
 artifacts/server.*.log
 artifacts/*-console.json
+artifacts/trace-*
+artifacts/policy-current.json
+artifacts/replay-current.json

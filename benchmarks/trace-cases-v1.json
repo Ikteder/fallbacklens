@@ -1,0 +1,2760 @@
+{
+  "schema_version": 1,
+  "suite": "synthetic-otlp-v1",
+  "seed": 20261009,
+  "cases": [
+    {
+      "name": "serial-fallback",
+      "expected": "observed-no-drift",
+      "policy": {
+        "model_list": [
+          {
+            "model_name": "primary"
+          },
+          {
+            "model_name": "secondary"
+          },
+          {
+            "model_name": "local"
+          }
+        ],
+        "router_settings": {
+          "num_retries": 1,
+          "fallbacks": [
+            {
+              "primary": "secondary"
+            },
+            {
+              "secondary": "local"
+            }
+          ]
+        }
+      },
+      "profile": {
+        "schema_version": 1,
+        "as_of": "2026-10-09",
+        "sources": [
+          "authored synthetic facts"
+        ],
+        "models": {},
+        "contracts": [
+          {
+            "name": "tool-agent",
+            "entrypoint": "primary",
+            "required_capabilities": [],
+            "required_context_tokens": 0,
+            "require_zero_data_retention": false,
+            "expected_input_tokens": 0,
+            "expected_output_tokens": 0,
+            "max_attempts": 3,
+            "max_cost_usd": 0,
+            "max_latency_ms": 500
+          }
+        ]
+      },
+      "bindings": {
+        "schema_version": 1,
+        "as_of": "2026-10-09",
+        "scopes": [
+          "gateway-fixture"
+        ],
+        "model_groups": {
+          "vendor/one": "primary",
+          "vendor/two": "secondary",
+          "vendor/three": "local"
+        },
+        "requests": [
+          {
+            "trace_id": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "root_span_id": "0000000000000001",
+            "contract": "tool-agent"
+          }
+        ]
+      },
+      "trace": {
+        "resourceSpans": [
+          {
+            "resource": {
+              "attributes": [
+                {
+                  "key": "private",
+                  "value": {
+                    "stringValue": "PRIVATE_RESOURCE"
+                  }
+                }
+              ]
+            },
+            "scopeSpans": [
+              {
+                "scope": {
+                  "name": "gateway-fixture"
+                },
+                "spans": [
+                  {
+                    "traceId": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+                    "spanId": "0000000000000001",
+                    "parentSpanId": "",
+                    "kind": 2,
+                    "startTimeUnixNano": "1000000000",
+                    "endTimeUnixNano": "2000000000",
+                    "attributes": [
+                      {
+                        "key": "gen_ai.operation.name",
+                        "value": {
+                          "stringValue": "gateway"
+                        }
+                      }
+                    ],
+                    "name": "PRIVATE_SPAN_NAME",
+                    "events": [
+                      {
+                        "name": "PRIVATE_EVENT"
+                      }
+                    ],
+                    "status": {
+                      "message": "PRIVATE_STATUS"
+                    }
+                  },
+                  {
+                    "traceId": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+                    "spanId": "0000000000000002",
+                    "parentSpanId": "0000000000000001",
+                    "kind": 3,
+                    "startTimeUnixNano": "1010000000",
+                    "endTimeUnixNano": "1100000000",
+                    "attributes": [
+                      {
+                        "key": "gen_ai.operation.name",
+                        "value": {
+                          "stringValue": "chat"
+                        }
+                      },
+                      {
+                        "key": "gen_ai.request.model",
+                        "value": {
+                          "stringValue": "vendor/one"
+                        }
+                      }
+                    ],
+                    "name": "PRIVATE_SPAN_NAME",
+                    "events": [
+                      {
+                        "name": "PRIVATE_EVENT"
+                      }
+                    ],
+                    "status": {
+                      "message": "PRIVATE_STATUS"
+                    }
+                  },
+                  {
+                    "traceId": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+                    "spanId": "0000000000000003",
+                    "parentSpanId": "0000000000000001",
+                    "kind": 3,
+                    "startTimeUnixNano": "1110000000",
+                    "endTimeUnixNano": "1200000000",
+                    "attributes": [
+                      {
+                        "key": "gen_ai.operation.name",
+                        "value": {
+                          "stringValue": "chat"
+                        }
+                      },
+                      {
+                        "key": "gen_ai.request.model",
+                        "value": {
+                          "stringValue": "vendor/two"
+                        }
+                      }
+                    ],
+                    "name": "PRIVATE_SPAN_NAME",
+                    "events": [
+                      {
+                        "name": "PRIVATE_EVENT"
+                      }
+                    ],
+                    "status": {
+                      "message": "PRIVATE_STATUS"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "nested-wrapper",
+      "expected": "observed-no-drift",
+      "policy": {
+        "model_list": [
+          {
+            "model_name": "primary"
+          },
+          {
+            "model_name": "secondary"
+          },
+          {
+            "model_name": "local"
+          }
+        ],
+        "router_settings": {
+          "num_retries": 1,
+          "fallbacks": [
+            {
+              "primary": "secondary"
+            },
+            {
+              "secondary": "local"
+            }
+          ]
+        }
+      },
+      "profile": {
+        "schema_version": 1,
+        "as_of": "2026-10-09",
+        "sources": [
+          "authored synthetic facts"
+        ],
+        "models": {},
+        "contracts": [
+          {
+            "name": "tool-agent",
+            "entrypoint": "primary",
+            "required_capabilities": [],
+            "required_context_tokens": 0,
+            "require_zero_data_retention": false,
+            "expected_input_tokens": 0,
+            "expected_output_tokens": 0,
+            "max_attempts": 1,
+            "max_cost_usd": 0,
+            "max_latency_ms": 500
+          }
+        ]
+      },
+      "bindings": {
+        "schema_version": 1,
+        "as_of": "2026-10-09",
+        "scopes": [
+          "gateway-fixture"
+        ],
+        "model_groups": {
+          "vendor/one": "primary",
+          "vendor/two": "secondary",
+          "vendor/three": "local"
+        },
+        "requests": [
+          {
+            "trace_id": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "root_span_id": "0000000000000001",
+            "contract": "tool-agent"
+          }
+        ]
+      },
+      "trace": {
+        "resourceSpans": [
+          {
+            "resource": {
+              "attributes": [
+                {
+                  "key": "private",
+                  "value": {
+                    "stringValue": "PRIVATE_RESOURCE"
+                  }
+                }
+              ]
+            },
+            "scopeSpans": [
+              {
+                "scope": {
+                  "name": "gateway-fixture"
+                },
+                "spans": [
+                  {
+                    "traceId": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+                    "spanId": "0000000000000001",
+                    "parentSpanId": "",
+                    "kind": 2,
+                    "startTimeUnixNano": "1000000000",
+                    "endTimeUnixNano": "2000000000",
+                    "attributes": [
+                      {
+                        "key": "gen_ai.operation.name",
+                        "value": {
+                          "stringValue": "gateway"
+                        }
+                      }
+                    ],
+                    "name": "PRIVATE_SPAN_NAME",
+                    "events": [
+                      {
+                        "name": "PRIVATE_EVENT"
+                      }
+                    ],
+                    "status": {
+                      "message": "PRIVATE_STATUS"
+                    }
+                  },
+                  {
+                    "traceId": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+                    "spanId": "0000000000000004",
+                    "parentSpanId": "0000000000000001",
+                    "kind": 3,
+                    "startTimeUnixNano": "1005000000",
+                    "endTimeUnixNano": "1105000000",
+                    "attributes": [
+                      {
+                        "key": "gen_ai.operation.name",
+                        "value": {
+                          "stringValue": "chat"
+                        }
+                      },
+                      {
+                        "key": "gen_ai.request.model",
+                        "value": {
+                          "stringValue": "vendor/one"
+                        }
+                      }
+                    ],
+                    "name": "PRIVATE_SPAN_NAME",
+                    "events": [
+                      {
+                        "name": "PRIVATE_EVENT"
+                      }
+                    ],
+                    "status": {
+                      "message": "PRIVATE_STATUS"
+                    }
+                  },
+                  {
+                    "traceId": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+                    "spanId": "0000000000000002",
+                    "parentSpanId": "0000000000000004",
+                    "kind": 3,
+                    "startTimeUnixNano": "1010000000",
+                    "endTimeUnixNano": "1100000000",
+                    "attributes": [
+                      {
+                        "key": "gen_ai.operation.name",
+                        "value": {
+                          "stringValue": "chat"
+                        }
+                      },
+                      {
+                        "key": "gen_ai.request.model",
+                        "value": {
+                          "stringValue": "vendor/one"
+                        }
+                      }
+                    ],
+                    "name": "PRIVATE_SPAN_NAME",
+                    "events": [
+                      {
+                        "name": "PRIVATE_EVENT"
+                      }
+                    ],
+                    "status": {
+                      "message": "PRIVATE_STATUS"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "workflow-labeled-llm",
+      "expected": "observed-no-drift",
+      "policy": {
+        "model_list": [
+          {
+            "model_name": "primary"
+          },
+          {
+            "model_name": "secondary"
+          },
+          {
+            "model_name": "local"
+          }
+        ],
+        "router_settings": {
+          "num_retries": 1,
+          "fallbacks": [
+            {
+              "primary": "secondary"
+            },
+            {
+              "secondary": "local"
+            }
+          ]
+        }
+      },
+      "profile": {
+        "schema_version": 1,
+        "as_of": "2026-10-09",
+        "sources": [
+          "authored synthetic facts"
+        ],
+        "models": {},
+        "contracts": [
+          {
+            "name": "tool-agent",
+            "entrypoint": "primary",
+            "required_capabilities": [],
+            "required_context_tokens": 0,
+            "require_zero_data_retention": false,
+            "expected_input_tokens": 0,
+            "expected_output_tokens": 0,
+            "max_attempts": 2,
+            "max_cost_usd": 0,
+            "max_latency_ms": 500
+          }
+        ]
+      },
+      "bindings": {
+        "schema_version": 1,
+        "as_of": "2026-10-09",
+        "scopes": [
+          "gateway-fixture"
+        ],
+        "model_groups": {
+          "vendor/one": "primary",
+          "vendor/two": "secondary",
+          "vendor/three": "local"
+        },
+        "requests": [
+          {
+            "trace_id": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "root_span_id": "0000000000000001",
+            "contract": "tool-agent"
+          }
+        ]
+      },
+      "trace": {
+        "resourceSpans": [
+          {
+            "resource": {
+              "attributes": [
+                {
+                  "key": "private",
+                  "value": {
+                    "stringValue": "PRIVATE_RESOURCE"
+                  }
+                }
+              ]
+            },
+            "scopeSpans": [
+              {
+                "scope": {
+                  "name": "gateway-fixture"
+                },
+                "spans": [
+                  {
+                    "traceId": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+                    "spanId": "0000000000000001",
+                    "parentSpanId": "",
+                    "kind": 2,
+                    "startTimeUnixNano": "1000000000",
+                    "endTimeUnixNano": "2000000000",
+                    "attributes": [
+                      {
+                        "key": "gen_ai.operation.name",
+                        "value": {
+                          "stringValue": "gateway"
+                        }
+                      }
+                    ],
+                    "name": "PRIVATE_SPAN_NAME",
+                    "events": [
+                      {
+                        "name": "PRIVATE_EVENT"
+                      }
+                    ],
+                    "status": {
+                      "message": "PRIVATE_STATUS"
+                    }
+                  },
+                  {
+                    "traceId": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+                    "spanId": "0000000000000004",
+                    "parentSpanId": "0000000000000001",
+                    "kind": 1,
+                    "startTimeUnixNano": "1005000000",
+                    "endTimeUnixNano": "1210000000",
+                    "attributes": [
+                      {
+                        "key": "gen_ai.operation.name",
+                        "value": {
+                          "stringValue": "workflow"
+                        }
+                      },
+                      {
+                        "key": "openinference.span.kind",
+                        "value": {
+                          "stringValue": "LLM"
+                        }
+                      }
+                    ],
+                    "name": "PRIVATE_SPAN_NAME",
+                    "events": [
+                      {
+                        "name": "PRIVATE_EVENT"
+                      }
+                    ],
+                    "status": {
+                      "message": "PRIVATE_STATUS"
+                    }
+                  },
+                  {
+                    "traceId": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+                    "spanId": "0000000000000002",
+                    "parentSpanId": "0000000000000004",
+                    "kind": 3,
+                    "startTimeUnixNano": "1010000000",
+                    "endTimeUnixNano": "1100000000",
+                    "attributes": [
+                      {
+                        "key": "gen_ai.operation.name",
+                        "value": {
+                          "stringValue": "chat"
+                        }
+                      },
+                      {
+                        "key": "gen_ai.request.model",
+                        "value": {
+                          "stringValue": "vendor/one"
+                        }
+                      }
+                    ],
+                    "name": "PRIVATE_SPAN_NAME",
+                    "events": [
+                      {
+                        "name": "PRIVATE_EVENT"
+                      }
+                    ],
+                    "status": {
+                      "message": "PRIVATE_STATUS"
+                    }
+                  },
+                  {
+                    "traceId": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+                    "spanId": "0000000000000003",
+                    "parentSpanId": "0000000000000004",
+                    "kind": 3,
+                    "startTimeUnixNano": "1110000000",
+                    "endTimeUnixNano": "1200000000",
+                    "attributes": [
+                      {
+                        "key": "gen_ai.operation.name",
+                        "value": {
+                          "stringValue": "chat"
+                        }
+                      },
+                      {
+                        "key": "gen_ai.request.model",
+                        "value": {
+                          "stringValue": "vendor/two"
+                        }
+                      }
+                    ],
+                    "name": "PRIVATE_SPAN_NAME",
+                    "events": [
+                      {
+                        "name": "PRIVATE_EVENT"
+                      }
+                    ],
+                    "status": {
+                      "message": "PRIVATE_STATUS"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "flattened-server",
+      "expected": "inconclusive",
+      "policy": {
+        "model_list": [
+          {
+            "model_name": "primary"
+          },
+          {
+            "model_name": "secondary"
+          },
+          {
+            "model_name": "local"
+          }
+        ],
+        "router_settings": {
+          "num_retries": 1,
+          "fallbacks": [
+            {
+              "primary": "secondary"
+            },
+            {
+              "secondary": "local"
+            }
+          ]
+        }
+      },
+      "profile": {
+        "schema_version": 1,
+        "as_of": "2026-10-09",
+        "sources": [
+          "authored synthetic facts"
+        ],
+        "models": {},
+        "contracts": [
+          {
+            "name": "tool-agent",
+            "entrypoint": "primary",
+            "required_capabilities": [],
+            "required_context_tokens": 0,
+            "require_zero_data_retention": false,
+            "expected_input_tokens": 0,
+            "expected_output_tokens": 0,
+            "max_attempts": 3,
+            "max_cost_usd": 0,
+            "max_latency_ms": 500
+          }
+        ]
+      },
+      "bindings": {
+        "schema_version": 1,
+        "as_of": "2026-10-09",
+        "scopes": [
+          "gateway-fixture"
+        ],
+        "model_groups": {
+          "vendor/one": "primary",
+          "vendor/two": "secondary",
+          "vendor/three": "local"
+        },
+        "requests": [
+          {
+            "trace_id": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "root_span_id": "0000000000000001",
+            "contract": "tool-agent"
+          }
+        ]
+      },
+      "trace": {
+        "resourceSpans": [
+          {
+            "resource": {
+              "attributes": [
+                {
+                  "key": "private",
+                  "value": {
+                    "stringValue": "PRIVATE_RESOURCE"
+                  }
+                }
+              ]
+            },
+            "scopeSpans": [
+              {
+                "scope": {
+                  "name": "gateway-fixture"
+                },
+                "spans": [
+                  {
+                    "traceId": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+                    "spanId": "0000000000000001",
+                    "parentSpanId": "",
+                    "kind": 2,
+                    "startTimeUnixNano": "1000000000",
+                    "endTimeUnixNano": "2000000000",
+                    "attributes": [
+                      {
+                        "key": "gen_ai.operation.name",
+                        "value": {
+                          "stringValue": "chat"
+                        }
+                      },
+                      {
+                        "key": "gen_ai.request.model",
+                        "value": {
+                          "stringValue": "vendor/one"
+                        }
+                      }
+                    ],
+                    "name": "PRIVATE_SPAN_NAME",
+                    "events": [
+                      {
+                        "name": "PRIVATE_EVENT"
+                      }
+                    ],
+                    "status": {
+                      "message": "PRIVATE_STATUS"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "unknown-model",
+      "expected": "inconclusive",
+      "policy": {
+        "model_list": [
+          {
+            "model_name": "primary"
+          },
+          {
+            "model_name": "secondary"
+          },
+          {
+            "model_name": "local"
+          }
+        ],
+        "router_settings": {
+          "num_retries": 1,
+          "fallbacks": [
+            {
+              "primary": "secondary"
+            },
+            {
+              "secondary": "local"
+            }
+          ]
+        }
+      },
+      "profile": {
+        "schema_version": 1,
+        "as_of": "2026-10-09",
+        "sources": [
+          "authored synthetic facts"
+        ],
+        "models": {},
+        "contracts": [
+          {
+            "name": "tool-agent",
+            "entrypoint": "primary",
+            "required_capabilities": [],
+            "required_context_tokens": 0,
+            "require_zero_data_retention": false,
+            "expected_input_tokens": 0,
+            "expected_output_tokens": 0,
+            "max_attempts": 3,
+            "max_cost_usd": 0,
+            "max_latency_ms": 500
+          }
+        ]
+      },
+      "bindings": {
+        "schema_version": 1,
+        "as_of": "2026-10-09",
+        "scopes": [
+          "gateway-fixture"
+        ],
+        "model_groups": {
+          "vendor/one": "primary",
+          "vendor/two": "secondary",
+          "vendor/three": "local"
+        },
+        "requests": [
+          {
+            "trace_id": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "root_span_id": "0000000000000001",
+            "contract": "tool-agent"
+          }
+        ]
+      },
+      "trace": {
+        "resourceSpans": [
+          {
+            "resource": {
+              "attributes": [
+                {
+                  "key": "private",
+                  "value": {
+                    "stringValue": "PRIVATE_RESOURCE"
+                  }
+                }
+              ]
+            },
+            "scopeSpans": [
+              {
+                "scope": {
+                  "name": "gateway-fixture"
+                },
+                "spans": [
+                  {
+                    "traceId": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+                    "spanId": "0000000000000001",
+                    "parentSpanId": "",
+                    "kind": 2,
+                    "startTimeUnixNano": "1000000000",
+                    "endTimeUnixNano": "2000000000",
+                    "attributes": [
+                      {
+                        "key": "gen_ai.operation.name",
+                        "value": {
+                          "stringValue": "gateway"
+                        }
+                      }
+                    ],
+                    "name": "PRIVATE_SPAN_NAME",
+                    "events": [
+                      {
+                        "name": "PRIVATE_EVENT"
+                      }
+                    ],
+                    "status": {
+                      "message": "PRIVATE_STATUS"
+                    }
+                  },
+                  {
+                    "traceId": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+                    "spanId": "0000000000000002",
+                    "parentSpanId": "0000000000000001",
+                    "kind": 3,
+                    "startTimeUnixNano": "1010000000",
+                    "endTimeUnixNano": "1100000000",
+                    "attributes": [
+                      {
+                        "key": "gen_ai.operation.name",
+                        "value": {
+                          "stringValue": "chat"
+                        }
+                      },
+                      {
+                        "key": "gen_ai.request.model",
+                        "value": {
+                          "stringValue": "PRIVATE_UNKNOWN_MODEL"
+                        }
+                      }
+                    ],
+                    "name": "PRIVATE_SPAN_NAME",
+                    "events": [
+                      {
+                        "name": "PRIVATE_EVENT"
+                      }
+                    ],
+                    "status": {
+                      "message": "PRIVATE_STATUS"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "missing-parent",
+      "expected": "inconclusive",
+      "policy": {
+        "model_list": [
+          {
+            "model_name": "primary"
+          },
+          {
+            "model_name": "secondary"
+          },
+          {
+            "model_name": "local"
+          }
+        ],
+        "router_settings": {
+          "num_retries": 1,
+          "fallbacks": [
+            {
+              "primary": "secondary"
+            },
+            {
+              "secondary": "local"
+            }
+          ]
+        }
+      },
+      "profile": {
+        "schema_version": 1,
+        "as_of": "2026-10-09",
+        "sources": [
+          "authored synthetic facts"
+        ],
+        "models": {},
+        "contracts": [
+          {
+            "name": "tool-agent",
+            "entrypoint": "primary",
+            "required_capabilities": [],
+            "required_context_tokens": 0,
+            "require_zero_data_retention": false,
+            "expected_input_tokens": 0,
+            "expected_output_tokens": 0,
+            "max_attempts": 3,
+            "max_cost_usd": 0,
+            "max_latency_ms": 500
+          }
+        ]
+      },
+      "bindings": {
+        "schema_version": 1,
+        "as_of": "2026-10-09",
+        "scopes": [
+          "gateway-fixture"
+        ],
+        "model_groups": {
+          "vendor/one": "primary",
+          "vendor/two": "secondary",
+          "vendor/three": "local"
+        },
+        "requests": [
+          {
+            "trace_id": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "root_span_id": "0000000000000001",
+            "contract": "tool-agent"
+          }
+        ]
+      },
+      "trace": {
+        "resourceSpans": [
+          {
+            "resource": {
+              "attributes": [
+                {
+                  "key": "private",
+                  "value": {
+                    "stringValue": "PRIVATE_RESOURCE"
+                  }
+                }
+              ]
+            },
+            "scopeSpans": [
+              {
+                "scope": {
+                  "name": "gateway-fixture"
+                },
+                "spans": [
+                  {
+                    "traceId": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+                    "spanId": "0000000000000001",
+                    "parentSpanId": "",
+                    "kind": 2,
+                    "startTimeUnixNano": "1000000000",
+                    "endTimeUnixNano": "2000000000",
+                    "attributes": [
+                      {
+                        "key": "gen_ai.operation.name",
+                        "value": {
+                          "stringValue": "gateway"
+                        }
+                      }
+                    ],
+                    "name": "PRIVATE_SPAN_NAME",
+                    "events": [
+                      {
+                        "name": "PRIVATE_EVENT"
+                      }
+                    ],
+                    "status": {
+                      "message": "PRIVATE_STATUS"
+                    }
+                  },
+                  {
+                    "traceId": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+                    "spanId": "0000000000000002",
+                    "parentSpanId": "0000000000000063",
+                    "kind": 3,
+                    "startTimeUnixNano": "1010000000",
+                    "endTimeUnixNano": "1100000000",
+                    "attributes": [
+                      {
+                        "key": "gen_ai.operation.name",
+                        "value": {
+                          "stringValue": "chat"
+                        }
+                      },
+                      {
+                        "key": "gen_ai.request.model",
+                        "value": {
+                          "stringValue": "vendor/one"
+                        }
+                      }
+                    ],
+                    "name": "PRIVATE_SPAN_NAME",
+                    "events": [
+                      {
+                        "name": "PRIVATE_EVENT"
+                      }
+                    ],
+                    "status": {
+                      "message": "PRIVATE_STATUS"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "call-threshold",
+      "expected": "drift",
+      "policy": {
+        "model_list": [
+          {
+            "model_name": "primary"
+          },
+          {
+            "model_name": "secondary"
+          },
+          {
+            "model_name": "local"
+          }
+        ],
+        "router_settings": {
+          "num_retries": 1,
+          "fallbacks": [
+            {
+              "primary": "secondary"
+            },
+            {
+              "secondary": "local"
+            }
+          ]
+        }
+      },
+      "profile": {
+        "schema_version": 1,
+        "as_of": "2026-10-09",
+        "sources": [
+          "authored synthetic facts"
+        ],
+        "models": {},
+        "contracts": [
+          {
+            "name": "tool-agent",
+            "entrypoint": "primary",
+            "required_capabilities": [],
+            "required_context_tokens": 0,
+            "require_zero_data_retention": false,
+            "expected_input_tokens": 0,
+            "expected_output_tokens": 0,
+            "max_attempts": 3,
+            "max_cost_usd": 0,
+            "max_latency_ms": 500
+          }
+        ]
+      },
+      "bindings": {
+        "schema_version": 1,
+        "as_of": "2026-10-09",
+        "scopes": [
+          "gateway-fixture"
+        ],
+        "model_groups": {
+          "vendor/one": "primary",
+          "vendor/two": "secondary",
+          "vendor/three": "local"
+        },
+        "requests": [
+          {
+            "trace_id": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "root_span_id": "0000000000000001",
+            "contract": "tool-agent"
+          }
+        ]
+      },
+      "trace": {
+        "resourceSpans": [
+          {
+            "resource": {
+              "attributes": [
+                {
+                  "key": "private",
+                  "value": {
+                    "stringValue": "PRIVATE_RESOURCE"
+                  }
+                }
+              ]
+            },
+            "scopeSpans": [
+              {
+                "scope": {
+                  "name": "gateway-fixture"
+                },
+                "spans": [
+                  {
+                    "traceId": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+                    "spanId": "0000000000000001",
+                    "parentSpanId": "",
+                    "kind": 2,
+                    "startTimeUnixNano": "1000000000",
+                    "endTimeUnixNano": "2000000000",
+                    "attributes": [
+                      {
+                        "key": "gen_ai.operation.name",
+                        "value": {
+                          "stringValue": "gateway"
+                        }
+                      }
+                    ],
+                    "name": "PRIVATE_SPAN_NAME",
+                    "events": [
+                      {
+                        "name": "PRIVATE_EVENT"
+                      }
+                    ],
+                    "status": {
+                      "message": "PRIVATE_STATUS"
+                    }
+                  },
+                  {
+                    "traceId": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+                    "spanId": "0000000000000002",
+                    "parentSpanId": "0000000000000001",
+                    "kind": 3,
+                    "startTimeUnixNano": "1010000000",
+                    "endTimeUnixNano": "1100000000",
+                    "attributes": [
+                      {
+                        "key": "gen_ai.operation.name",
+                        "value": {
+                          "stringValue": "chat"
+                        }
+                      },
+                      {
+                        "key": "gen_ai.request.model",
+                        "value": {
+                          "stringValue": "vendor/one"
+                        }
+                      }
+                    ],
+                    "name": "PRIVATE_SPAN_NAME",
+                    "events": [
+                      {
+                        "name": "PRIVATE_EVENT"
+                      }
+                    ],
+                    "status": {
+                      "message": "PRIVATE_STATUS"
+                    }
+                  },
+                  {
+                    "traceId": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+                    "spanId": "0000000000000003",
+                    "parentSpanId": "0000000000000001",
+                    "kind": 3,
+                    "startTimeUnixNano": "1110000000",
+                    "endTimeUnixNano": "1200000000",
+                    "attributes": [
+                      {
+                        "key": "gen_ai.operation.name",
+                        "value": {
+                          "stringValue": "chat"
+                        }
+                      },
+                      {
+                        "key": "gen_ai.request.model",
+                        "value": {
+                          "stringValue": "vendor/two"
+                        }
+                      }
+                    ],
+                    "name": "PRIVATE_SPAN_NAME",
+                    "events": [
+                      {
+                        "name": "PRIVATE_EVENT"
+                      }
+                    ],
+                    "status": {
+                      "message": "PRIVATE_STATUS"
+                    }
+                  },
+                  {
+                    "traceId": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+                    "spanId": "0000000000000004",
+                    "parentSpanId": "0000000000000001",
+                    "kind": 3,
+                    "startTimeUnixNano": "1210000000",
+                    "endTimeUnixNano": "1250000000",
+                    "attributes": [
+                      {
+                        "key": "gen_ai.operation.name",
+                        "value": {
+                          "stringValue": "chat"
+                        }
+                      },
+                      {
+                        "key": "gen_ai.request.model",
+                        "value": {
+                          "stringValue": "vendor/three"
+                        }
+                      }
+                    ],
+                    "name": "PRIVATE_SPAN_NAME",
+                    "events": [
+                      {
+                        "name": "PRIVATE_EVENT"
+                      }
+                    ],
+                    "status": {
+                      "message": "PRIVATE_STATUS"
+                    }
+                  },
+                  {
+                    "traceId": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+                    "spanId": "0000000000000005",
+                    "parentSpanId": "0000000000000001",
+                    "kind": 3,
+                    "startTimeUnixNano": "1260000000",
+                    "endTimeUnixNano": "1300000000",
+                    "attributes": [
+                      {
+                        "key": "gen_ai.operation.name",
+                        "value": {
+                          "stringValue": "chat"
+                        }
+                      },
+                      {
+                        "key": "gen_ai.request.model",
+                        "value": {
+                          "stringValue": "vendor/three"
+                        }
+                      }
+                    ],
+                    "name": "PRIVATE_SPAN_NAME",
+                    "events": [
+                      {
+                        "name": "PRIVATE_EVENT"
+                      }
+                    ],
+                    "status": {
+                      "message": "PRIVATE_STATUS"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "group-call-threshold",
+      "expected": "drift",
+      "policy": {
+        "model_list": [
+          {
+            "model_name": "primary"
+          },
+          {
+            "model_name": "secondary"
+          },
+          {
+            "model_name": "local"
+          }
+        ],
+        "router_settings": {
+          "num_retries": 1,
+          "fallbacks": [
+            {
+              "primary": "secondary"
+            },
+            {
+              "secondary": "local"
+            }
+          ]
+        }
+      },
+      "profile": {
+        "schema_version": 1,
+        "as_of": "2026-10-09",
+        "sources": [
+          "authored synthetic facts"
+        ],
+        "models": {},
+        "contracts": [
+          {
+            "name": "tool-agent",
+            "entrypoint": "primary",
+            "required_capabilities": [],
+            "required_context_tokens": 0,
+            "require_zero_data_retention": false,
+            "expected_input_tokens": 0,
+            "expected_output_tokens": 0,
+            "max_attempts": 3,
+            "max_cost_usd": 0,
+            "max_latency_ms": 500
+          }
+        ]
+      },
+      "bindings": {
+        "schema_version": 1,
+        "as_of": "2026-10-09",
+        "scopes": [
+          "gateway-fixture"
+        ],
+        "model_groups": {
+          "vendor/one": "primary",
+          "vendor/two": "secondary",
+          "vendor/three": "local"
+        },
+        "requests": [
+          {
+            "trace_id": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "root_span_id": "0000000000000001",
+            "contract": "tool-agent"
+          }
+        ]
+      },
+      "trace": {
+        "resourceSpans": [
+          {
+            "resource": {
+              "attributes": [
+                {
+                  "key": "private",
+                  "value": {
+                    "stringValue": "PRIVATE_RESOURCE"
+                  }
+                }
+              ]
+            },
+            "scopeSpans": [
+              {
+                "scope": {
+                  "name": "gateway-fixture"
+                },
+                "spans": [
+                  {
+                    "traceId": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+                    "spanId": "0000000000000001",
+                    "parentSpanId": "",
+                    "kind": 2,
+                    "startTimeUnixNano": "1000000000",
+                    "endTimeUnixNano": "2000000000",
+                    "attributes": [
+                      {
+                        "key": "gen_ai.operation.name",
+                        "value": {
+                          "stringValue": "gateway"
+                        }
+                      }
+                    ],
+                    "name": "PRIVATE_SPAN_NAME",
+                    "events": [
+                      {
+                        "name": "PRIVATE_EVENT"
+                      }
+                    ],
+                    "status": {
+                      "message": "PRIVATE_STATUS"
+                    }
+                  },
+                  {
+                    "traceId": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+                    "spanId": "0000000000000002",
+                    "parentSpanId": "0000000000000001",
+                    "kind": 3,
+                    "startTimeUnixNano": "1010000000",
+                    "endTimeUnixNano": "1100000000",
+                    "attributes": [
+                      {
+                        "key": "gen_ai.operation.name",
+                        "value": {
+                          "stringValue": "chat"
+                        }
+                      },
+                      {
+                        "key": "gen_ai.request.model",
+                        "value": {
+                          "stringValue": "vendor/one"
+                        }
+                      }
+                    ],
+                    "name": "PRIVATE_SPAN_NAME",
+                    "events": [
+                      {
+                        "name": "PRIVATE_EVENT"
+                      }
+                    ],
+                    "status": {
+                      "message": "PRIVATE_STATUS"
+                    }
+                  },
+                  {
+                    "traceId": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+                    "spanId": "0000000000000003",
+                    "parentSpanId": "0000000000000001",
+                    "kind": 3,
+                    "startTimeUnixNano": "1110000000",
+                    "endTimeUnixNano": "1200000000",
+                    "attributes": [
+                      {
+                        "key": "gen_ai.operation.name",
+                        "value": {
+                          "stringValue": "chat"
+                        }
+                      },
+                      {
+                        "key": "gen_ai.request.model",
+                        "value": {
+                          "stringValue": "vendor/one"
+                        }
+                      }
+                    ],
+                    "name": "PRIVATE_SPAN_NAME",
+                    "events": [
+                      {
+                        "name": "PRIVATE_EVENT"
+                      }
+                    ],
+                    "status": {
+                      "message": "PRIVATE_STATUS"
+                    }
+                  },
+                  {
+                    "traceId": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+                    "spanId": "0000000000000004",
+                    "parentSpanId": "0000000000000001",
+                    "kind": 3,
+                    "startTimeUnixNano": "1210000000",
+                    "endTimeUnixNano": "1300000000",
+                    "attributes": [
+                      {
+                        "key": "gen_ai.operation.name",
+                        "value": {
+                          "stringValue": "chat"
+                        }
+                      },
+                      {
+                        "key": "gen_ai.request.model",
+                        "value": {
+                          "stringValue": "vendor/one"
+                        }
+                      }
+                    ],
+                    "name": "PRIVATE_SPAN_NAME",
+                    "events": [
+                      {
+                        "name": "PRIVATE_EVENT"
+                      }
+                    ],
+                    "status": {
+                      "message": "PRIVATE_STATUS"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "unconfigured-transition",
+      "expected": "drift",
+      "policy": {
+        "model_list": [
+          {
+            "model_name": "primary"
+          },
+          {
+            "model_name": "secondary"
+          },
+          {
+            "model_name": "local"
+          }
+        ],
+        "router_settings": {
+          "num_retries": 1,
+          "fallbacks": [
+            {
+              "primary": "secondary"
+            },
+            {
+              "secondary": "local"
+            }
+          ]
+        }
+      },
+      "profile": {
+        "schema_version": 1,
+        "as_of": "2026-10-09",
+        "sources": [
+          "authored synthetic facts"
+        ],
+        "models": {},
+        "contracts": [
+          {
+            "name": "tool-agent",
+            "entrypoint": "primary",
+            "required_capabilities": [],
+            "required_context_tokens": 0,
+            "require_zero_data_retention": false,
+            "expected_input_tokens": 0,
+            "expected_output_tokens": 0,
+            "max_attempts": 3,
+            "max_cost_usd": 0,
+            "max_latency_ms": 500
+          }
+        ]
+      },
+      "bindings": {
+        "schema_version": 1,
+        "as_of": "2026-10-09",
+        "scopes": [
+          "gateway-fixture"
+        ],
+        "model_groups": {
+          "vendor/one": "primary",
+          "vendor/two": "secondary",
+          "vendor/three": "local"
+        },
+        "requests": [
+          {
+            "trace_id": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "root_span_id": "0000000000000001",
+            "contract": "tool-agent"
+          }
+        ]
+      },
+      "trace": {
+        "resourceSpans": [
+          {
+            "resource": {
+              "attributes": [
+                {
+                  "key": "private",
+                  "value": {
+                    "stringValue": "PRIVATE_RESOURCE"
+                  }
+                }
+              ]
+            },
+            "scopeSpans": [
+              {
+                "scope": {
+                  "name": "gateway-fixture"
+                },
+                "spans": [
+                  {
+                    "traceId": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+                    "spanId": "0000000000000001",
+                    "parentSpanId": "",
+                    "kind": 2,
+                    "startTimeUnixNano": "1000000000",
+                    "endTimeUnixNano": "2000000000",
+                    "attributes": [
+                      {
+                        "key": "gen_ai.operation.name",
+                        "value": {
+                          "stringValue": "gateway"
+                        }
+                      }
+                    ],
+                    "name": "PRIVATE_SPAN_NAME",
+                    "events": [
+                      {
+                        "name": "PRIVATE_EVENT"
+                      }
+                    ],
+                    "status": {
+                      "message": "PRIVATE_STATUS"
+                    }
+                  },
+                  {
+                    "traceId": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+                    "spanId": "0000000000000002",
+                    "parentSpanId": "0000000000000001",
+                    "kind": 3,
+                    "startTimeUnixNano": "1010000000",
+                    "endTimeUnixNano": "1100000000",
+                    "attributes": [
+                      {
+                        "key": "gen_ai.operation.name",
+                        "value": {
+                          "stringValue": "chat"
+                        }
+                      },
+                      {
+                        "key": "gen_ai.request.model",
+                        "value": {
+                          "stringValue": "vendor/one"
+                        }
+                      }
+                    ],
+                    "name": "PRIVATE_SPAN_NAME",
+                    "events": [
+                      {
+                        "name": "PRIVATE_EVENT"
+                      }
+                    ],
+                    "status": {
+                      "message": "PRIVATE_STATUS"
+                    }
+                  },
+                  {
+                    "traceId": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+                    "spanId": "0000000000000003",
+                    "parentSpanId": "0000000000000001",
+                    "kind": 3,
+                    "startTimeUnixNano": "1110000000",
+                    "endTimeUnixNano": "1200000000",
+                    "attributes": [
+                      {
+                        "key": "gen_ai.operation.name",
+                        "value": {
+                          "stringValue": "chat"
+                        }
+                      },
+                      {
+                        "key": "gen_ai.request.model",
+                        "value": {
+                          "stringValue": "vendor/three"
+                        }
+                      }
+                    ],
+                    "name": "PRIVATE_SPAN_NAME",
+                    "events": [
+                      {
+                        "name": "PRIVATE_EVENT"
+                      }
+                    ],
+                    "status": {
+                      "message": "PRIVATE_STATUS"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "latency-drift",
+      "expected": "drift",
+      "policy": {
+        "model_list": [
+          {
+            "model_name": "primary"
+          },
+          {
+            "model_name": "secondary"
+          },
+          {
+            "model_name": "local"
+          }
+        ],
+        "router_settings": {
+          "num_retries": 1,
+          "fallbacks": [
+            {
+              "primary": "secondary"
+            },
+            {
+              "secondary": "local"
+            }
+          ]
+        }
+      },
+      "profile": {
+        "schema_version": 1,
+        "as_of": "2026-10-09",
+        "sources": [
+          "authored synthetic facts"
+        ],
+        "models": {},
+        "contracts": [
+          {
+            "name": "tool-agent",
+            "entrypoint": "primary",
+            "required_capabilities": [],
+            "required_context_tokens": 0,
+            "require_zero_data_retention": false,
+            "expected_input_tokens": 0,
+            "expected_output_tokens": 0,
+            "max_attempts": 3,
+            "max_cost_usd": 0,
+            "max_latency_ms": 500
+          }
+        ]
+      },
+      "bindings": {
+        "schema_version": 1,
+        "as_of": "2026-10-09",
+        "scopes": [
+          "gateway-fixture"
+        ],
+        "model_groups": {
+          "vendor/one": "primary",
+          "vendor/two": "secondary",
+          "vendor/three": "local"
+        },
+        "requests": [
+          {
+            "trace_id": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "root_span_id": "0000000000000001",
+            "contract": "tool-agent"
+          }
+        ]
+      },
+      "trace": {
+        "resourceSpans": [
+          {
+            "resource": {
+              "attributes": [
+                {
+                  "key": "private",
+                  "value": {
+                    "stringValue": "PRIVATE_RESOURCE"
+                  }
+                }
+              ]
+            },
+            "scopeSpans": [
+              {
+                "scope": {
+                  "name": "gateway-fixture"
+                },
+                "spans": [
+                  {
+                    "traceId": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+                    "spanId": "0000000000000001",
+                    "parentSpanId": "",
+                    "kind": 2,
+                    "startTimeUnixNano": "1000000000",
+                    "endTimeUnixNano": "2000000000",
+                    "attributes": [
+                      {
+                        "key": "gen_ai.operation.name",
+                        "value": {
+                          "stringValue": "gateway"
+                        }
+                      }
+                    ],
+                    "name": "PRIVATE_SPAN_NAME",
+                    "events": [
+                      {
+                        "name": "PRIVATE_EVENT"
+                      }
+                    ],
+                    "status": {
+                      "message": "PRIVATE_STATUS"
+                    }
+                  },
+                  {
+                    "traceId": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+                    "spanId": "0000000000000002",
+                    "parentSpanId": "0000000000000001",
+                    "kind": 3,
+                    "startTimeUnixNano": "1010000000",
+                    "endTimeUnixNano": "1700000000",
+                    "attributes": [
+                      {
+                        "key": "gen_ai.operation.name",
+                        "value": {
+                          "stringValue": "chat"
+                        }
+                      },
+                      {
+                        "key": "gen_ai.request.model",
+                        "value": {
+                          "stringValue": "vendor/one"
+                        }
+                      }
+                    ],
+                    "name": "PRIVATE_SPAN_NAME",
+                    "events": [
+                      {
+                        "name": "PRIVATE_EVENT"
+                      }
+                    ],
+                    "status": {
+                      "message": "PRIVATE_STATUS"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "parallel-ambiguity",
+      "expected": "inconclusive",
+      "policy": {
+        "model_list": [
+          {
+            "model_name": "primary"
+          },
+          {
+            "model_name": "secondary"
+          },
+          {
+            "model_name": "local"
+          }
+        ],
+        "router_settings": {
+          "num_retries": 1,
+          "fallbacks": [
+            {
+              "primary": "secondary"
+            },
+            {
+              "secondary": "local"
+            }
+          ]
+        }
+      },
+      "profile": {
+        "schema_version": 1,
+        "as_of": "2026-10-09",
+        "sources": [
+          "authored synthetic facts"
+        ],
+        "models": {},
+        "contracts": [
+          {
+            "name": "tool-agent",
+            "entrypoint": "primary",
+            "required_capabilities": [],
+            "required_context_tokens": 0,
+            "require_zero_data_retention": false,
+            "expected_input_tokens": 0,
+            "expected_output_tokens": 0,
+            "max_attempts": 3,
+            "max_cost_usd": 0,
+            "max_latency_ms": 500
+          }
+        ]
+      },
+      "bindings": {
+        "schema_version": 1,
+        "as_of": "2026-10-09",
+        "scopes": [
+          "gateway-fixture"
+        ],
+        "model_groups": {
+          "vendor/one": "primary",
+          "vendor/two": "secondary",
+          "vendor/three": "local"
+        },
+        "requests": [
+          {
+            "trace_id": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "root_span_id": "0000000000000001",
+            "contract": "tool-agent"
+          }
+        ]
+      },
+      "trace": {
+        "resourceSpans": [
+          {
+            "resource": {
+              "attributes": [
+                {
+                  "key": "private",
+                  "value": {
+                    "stringValue": "PRIVATE_RESOURCE"
+                  }
+                }
+              ]
+            },
+            "scopeSpans": [
+              {
+                "scope": {
+                  "name": "gateway-fixture"
+                },
+                "spans": [
+                  {
+                    "traceId": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+                    "spanId": "0000000000000001",
+                    "parentSpanId": "",
+                    "kind": 2,
+                    "startTimeUnixNano": "1000000000",
+                    "endTimeUnixNano": "2000000000",
+                    "attributes": [
+                      {
+                        "key": "gen_ai.operation.name",
+                        "value": {
+                          "stringValue": "gateway"
+                        }
+                      }
+                    ],
+                    "name": "PRIVATE_SPAN_NAME",
+                    "events": [
+                      {
+                        "name": "PRIVATE_EVENT"
+                      }
+                    ],
+                    "status": {
+                      "message": "PRIVATE_STATUS"
+                    }
+                  },
+                  {
+                    "traceId": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+                    "spanId": "0000000000000002",
+                    "parentSpanId": "0000000000000001",
+                    "kind": 3,
+                    "startTimeUnixNano": "1010000000",
+                    "endTimeUnixNano": "1100000000",
+                    "attributes": [
+                      {
+                        "key": "gen_ai.operation.name",
+                        "value": {
+                          "stringValue": "chat"
+                        }
+                      },
+                      {
+                        "key": "gen_ai.request.model",
+                        "value": {
+                          "stringValue": "vendor/one"
+                        }
+                      }
+                    ],
+                    "name": "PRIVATE_SPAN_NAME",
+                    "events": [
+                      {
+                        "name": "PRIVATE_EVENT"
+                      }
+                    ],
+                    "status": {
+                      "message": "PRIVATE_STATUS"
+                    }
+                  },
+                  {
+                    "traceId": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+                    "spanId": "0000000000000003",
+                    "parentSpanId": "0000000000000001",
+                    "kind": 3,
+                    "startTimeUnixNano": "1050000000",
+                    "endTimeUnixNano": "1150000000",
+                    "attributes": [
+                      {
+                        "key": "gen_ai.operation.name",
+                        "value": {
+                          "stringValue": "chat"
+                        }
+                      },
+                      {
+                        "key": "gen_ai.request.model",
+                        "value": {
+                          "stringValue": "vendor/two"
+                        }
+                      }
+                    ],
+                    "name": "PRIVATE_SPAN_NAME",
+                    "events": [
+                      {
+                        "name": "PRIVATE_EVENT"
+                      }
+                    ],
+                    "status": {
+                      "message": "PRIVATE_STATUS"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "nested-route-ambiguity",
+      "expected": "inconclusive",
+      "policy": {
+        "model_list": [
+          {
+            "model_name": "primary"
+          },
+          {
+            "model_name": "secondary"
+          },
+          {
+            "model_name": "local"
+          }
+        ],
+        "router_settings": {
+          "num_retries": 1,
+          "fallbacks": [
+            {
+              "primary": "secondary"
+            },
+            {
+              "secondary": "local"
+            }
+          ]
+        }
+      },
+      "profile": {
+        "schema_version": 1,
+        "as_of": "2026-10-09",
+        "sources": [
+          "authored synthetic facts"
+        ],
+        "models": {},
+        "contracts": [
+          {
+            "name": "tool-agent",
+            "entrypoint": "primary",
+            "required_capabilities": [],
+            "required_context_tokens": 0,
+            "require_zero_data_retention": false,
+            "expected_input_tokens": 0,
+            "expected_output_tokens": 0,
+            "max_attempts": 3,
+            "max_cost_usd": 0,
+            "max_latency_ms": 500
+          }
+        ]
+      },
+      "bindings": {
+        "schema_version": 1,
+        "as_of": "2026-10-09",
+        "scopes": [
+          "gateway-fixture"
+        ],
+        "model_groups": {
+          "vendor/one": "primary",
+          "vendor/two": "secondary",
+          "vendor/three": "local"
+        },
+        "requests": [
+          {
+            "trace_id": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "root_span_id": "0000000000000001",
+            "contract": "tool-agent"
+          }
+        ]
+      },
+      "trace": {
+        "resourceSpans": [
+          {
+            "resource": {
+              "attributes": [
+                {
+                  "key": "private",
+                  "value": {
+                    "stringValue": "PRIVATE_RESOURCE"
+                  }
+                }
+              ]
+            },
+            "scopeSpans": [
+              {
+                "scope": {
+                  "name": "gateway-fixture"
+                },
+                "spans": [
+                  {
+                    "traceId": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+                    "spanId": "0000000000000001",
+                    "parentSpanId": "",
+                    "kind": 2,
+                    "startTimeUnixNano": "1000000000",
+                    "endTimeUnixNano": "2000000000",
+                    "attributes": [
+                      {
+                        "key": "gen_ai.operation.name",
+                        "value": {
+                          "stringValue": "gateway"
+                        }
+                      }
+                    ],
+                    "name": "PRIVATE_SPAN_NAME",
+                    "events": [
+                      {
+                        "name": "PRIVATE_EVENT"
+                      }
+                    ],
+                    "status": {
+                      "message": "PRIVATE_STATUS"
+                    }
+                  },
+                  {
+                    "traceId": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+                    "spanId": "0000000000000004",
+                    "parentSpanId": "0000000000000001",
+                    "kind": 3,
+                    "startTimeUnixNano": "1005000000",
+                    "endTimeUnixNano": "1105000000",
+                    "attributes": [
+                      {
+                        "key": "gen_ai.operation.name",
+                        "value": {
+                          "stringValue": "chat"
+                        }
+                      },
+                      {
+                        "key": "gen_ai.request.model",
+                        "value": {
+                          "stringValue": "vendor/two"
+                        }
+                      }
+                    ],
+                    "name": "PRIVATE_SPAN_NAME",
+                    "events": [
+                      {
+                        "name": "PRIVATE_EVENT"
+                      }
+                    ],
+                    "status": {
+                      "message": "PRIVATE_STATUS"
+                    }
+                  },
+                  {
+                    "traceId": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+                    "spanId": "0000000000000002",
+                    "parentSpanId": "0000000000000004",
+                    "kind": 3,
+                    "startTimeUnixNano": "1010000000",
+                    "endTimeUnixNano": "1100000000",
+                    "attributes": [
+                      {
+                        "key": "gen_ai.operation.name",
+                        "value": {
+                          "stringValue": "chat"
+                        }
+                      },
+                      {
+                        "key": "gen_ai.request.model",
+                        "value": {
+                          "stringValue": "vendor/one"
+                        }
+                      }
+                    ],
+                    "name": "PRIVATE_SPAN_NAME",
+                    "events": [
+                      {
+                        "name": "PRIVATE_EVENT"
+                      }
+                    ],
+                    "status": {
+                      "message": "PRIVATE_STATUS"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "scope-not-selected",
+      "expected": "inconclusive",
+      "policy": {
+        "model_list": [
+          {
+            "model_name": "primary"
+          },
+          {
+            "model_name": "secondary"
+          },
+          {
+            "model_name": "local"
+          }
+        ],
+        "router_settings": {
+          "num_retries": 1,
+          "fallbacks": [
+            {
+              "primary": "secondary"
+            },
+            {
+              "secondary": "local"
+            }
+          ]
+        }
+      },
+      "profile": {
+        "schema_version": 1,
+        "as_of": "2026-10-09",
+        "sources": [
+          "authored synthetic facts"
+        ],
+        "models": {},
+        "contracts": [
+          {
+            "name": "tool-agent",
+            "entrypoint": "primary",
+            "required_capabilities": [],
+            "required_context_tokens": 0,
+            "require_zero_data_retention": false,
+            "expected_input_tokens": 0,
+            "expected_output_tokens": 0,
+            "max_attempts": 3,
+            "max_cost_usd": 0,
+            "max_latency_ms": 500
+          }
+        ]
+      },
+      "bindings": {
+        "schema_version": 1,
+        "as_of": "2026-10-09",
+        "scopes": [
+          "gateway-fixture"
+        ],
+        "model_groups": {
+          "vendor/one": "primary",
+          "vendor/two": "secondary",
+          "vendor/three": "local"
+        },
+        "requests": [
+          {
+            "trace_id": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "root_span_id": "0000000000000001",
+            "contract": "tool-agent"
+          }
+        ]
+      },
+      "trace": {
+        "resourceSpans": [
+          {
+            "resource": {
+              "attributes": [
+                {
+                  "key": "private",
+                  "value": {
+                    "stringValue": "PRIVATE_RESOURCE"
+                  }
+                }
+              ]
+            },
+            "scopeSpans": [
+              {
+                "scope": {
+                  "name": "unknown-instrumenter"
+                },
+                "spans": [
+                  {
+                    "traceId": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+                    "spanId": "0000000000000001",
+                    "parentSpanId": "",
+                    "kind": 2,
+                    "startTimeUnixNano": "1000000000",
+                    "endTimeUnixNano": "2000000000",
+                    "attributes": [
+                      {
+                        "key": "gen_ai.operation.name",
+                        "value": {
+                          "stringValue": "gateway"
+                        }
+                      }
+                    ],
+                    "name": "PRIVATE_SPAN_NAME",
+                    "events": [
+                      {
+                        "name": "PRIVATE_EVENT"
+                      }
+                    ],
+                    "status": {
+                      "message": "PRIVATE_STATUS"
+                    }
+                  },
+                  {
+                    "traceId": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+                    "spanId": "0000000000000002",
+                    "parentSpanId": "0000000000000001",
+                    "kind": 3,
+                    "startTimeUnixNano": "1010000000",
+                    "endTimeUnixNano": "1100000000",
+                    "attributes": [
+                      {
+                        "key": "gen_ai.operation.name",
+                        "value": {
+                          "stringValue": "chat"
+                        }
+                      },
+                      {
+                        "key": "gen_ai.request.model",
+                        "value": {
+                          "stringValue": "vendor/one"
+                        }
+                      }
+                    ],
+                    "name": "PRIVATE_SPAN_NAME",
+                    "events": [
+                      {
+                        "name": "PRIVATE_EVENT"
+                      }
+                    ],
+                    "status": {
+                      "message": "PRIVATE_STATUS"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "entrypoint-drift",
+      "expected": "drift",
+      "policy": {
+        "model_list": [
+          {
+            "model_name": "primary"
+          },
+          {
+            "model_name": "secondary"
+          },
+          {
+            "model_name": "local"
+          }
+        ],
+        "router_settings": {
+          "num_retries": 1,
+          "fallbacks": [
+            {
+              "primary": "secondary"
+            },
+            {
+              "secondary": "local"
+            }
+          ]
+        }
+      },
+      "profile": {
+        "schema_version": 1,
+        "as_of": "2026-10-09",
+        "sources": [
+          "authored synthetic facts"
+        ],
+        "models": {},
+        "contracts": [
+          {
+            "name": "tool-agent",
+            "entrypoint": "primary",
+            "required_capabilities": [],
+            "required_context_tokens": 0,
+            "require_zero_data_retention": false,
+            "expected_input_tokens": 0,
+            "expected_output_tokens": 0,
+            "max_attempts": 3,
+            "max_cost_usd": 0,
+            "max_latency_ms": 500
+          }
+        ]
+      },
+      "bindings": {
+        "schema_version": 1,
+        "as_of": "2026-10-09",
+        "scopes": [
+          "gateway-fixture"
+        ],
+        "model_groups": {
+          "vendor/one": "primary",
+          "vendor/two": "secondary",
+          "vendor/three": "local"
+        },
+        "requests": [
+          {
+            "trace_id": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "root_span_id": "0000000000000001",
+            "contract": "tool-agent"
+          }
+        ]
+      },
+      "trace": {
+        "resourceSpans": [
+          {
+            "resource": {
+              "attributes": [
+                {
+                  "key": "private",
+                  "value": {
+                    "stringValue": "PRIVATE_RESOURCE"
+                  }
+                }
+              ]
+            },
+            "scopeSpans": [
+              {
+                "scope": {
+                  "name": "gateway-fixture"
+                },
+                "spans": [
+                  {
+                    "traceId": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+                    "spanId": "0000000000000001",
+                    "parentSpanId": "",
+                    "kind": 2,
+                    "startTimeUnixNano": "1000000000",
+                    "endTimeUnixNano": "2000000000",
+                    "attributes": [
+                      {
+                        "key": "gen_ai.operation.name",
+                        "value": {
+                          "stringValue": "gateway"
+                        }
+                      }
+                    ],
+                    "name": "PRIVATE_SPAN_NAME",
+                    "events": [
+                      {
+                        "name": "PRIVATE_EVENT"
+                      }
+                    ],
+                    "status": {
+                      "message": "PRIVATE_STATUS"
+                    }
+                  },
+                  {
+                    "traceId": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+                    "spanId": "0000000000000003",
+                    "parentSpanId": "0000000000000001",
+                    "kind": 3,
+                    "startTimeUnixNano": "1110000000",
+                    "endTimeUnixNano": "1200000000",
+                    "attributes": [
+                      {
+                        "key": "gen_ai.operation.name",
+                        "value": {
+                          "stringValue": "chat"
+                        }
+                      },
+                      {
+                        "key": "gen_ai.request.model",
+                        "value": {
+                          "stringValue": "vendor/two"
+                        }
+                      }
+                    ],
+                    "name": "PRIVATE_SPAN_NAME",
+                    "events": [
+                      {
+                        "name": "PRIVATE_EVENT"
+                      }
+                    ],
+                    "status": {
+                      "message": "PRIVATE_STATUS"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "internal-inference",
+      "expected": "inconclusive",
+      "policy": {
+        "model_list": [
+          {
+            "model_name": "primary"
+          },
+          {
+            "model_name": "secondary"
+          },
+          {
+            "model_name": "local"
+          }
+        ],
+        "router_settings": {
+          "num_retries": 1,
+          "fallbacks": [
+            {
+              "primary": "secondary"
+            },
+            {
+              "secondary": "local"
+            }
+          ]
+        }
+      },
+      "profile": {
+        "schema_version": 1,
+        "as_of": "2026-10-09",
+        "sources": [
+          "authored synthetic facts"
+        ],
+        "models": {},
+        "contracts": [
+          {
+            "name": "tool-agent",
+            "entrypoint": "primary",
+            "required_capabilities": [],
+            "required_context_tokens": 0,
+            "require_zero_data_retention": false,
+            "expected_input_tokens": 0,
+            "expected_output_tokens": 0,
+            "max_attempts": 3,
+            "max_cost_usd": 0,
+            "max_latency_ms": 500
+          }
+        ]
+      },
+      "bindings": {
+        "schema_version": 1,
+        "as_of": "2026-10-09",
+        "scopes": [
+          "gateway-fixture"
+        ],
+        "model_groups": {
+          "vendor/one": "primary",
+          "vendor/two": "secondary",
+          "vendor/three": "local"
+        },
+        "requests": [
+          {
+            "trace_id": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "root_span_id": "0000000000000001",
+            "contract": "tool-agent"
+          }
+        ]
+      },
+      "trace": {
+        "resourceSpans": [
+          {
+            "resource": {
+              "attributes": [
+                {
+                  "key": "private",
+                  "value": {
+                    "stringValue": "PRIVATE_RESOURCE"
+                  }
+                }
+              ]
+            },
+            "scopeSpans": [
+              {
+                "scope": {
+                  "name": "gateway-fixture"
+                },
+                "spans": [
+                  {
+                    "traceId": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+                    "spanId": "0000000000000001",
+                    "parentSpanId": "",
+                    "kind": 2,
+                    "startTimeUnixNano": "1000000000",
+                    "endTimeUnixNano": "2000000000",
+                    "attributes": [
+                      {
+                        "key": "gen_ai.operation.name",
+                        "value": {
+                          "stringValue": "gateway"
+                        }
+                      }
+                    ],
+                    "name": "PRIVATE_SPAN_NAME",
+                    "events": [
+                      {
+                        "name": "PRIVATE_EVENT"
+                      }
+                    ],
+                    "status": {
+                      "message": "PRIVATE_STATUS"
+                    }
+                  },
+                  {
+                    "traceId": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+                    "spanId": "0000000000000002",
+                    "parentSpanId": "0000000000000001",
+                    "kind": 1,
+                    "startTimeUnixNano": "1010000000",
+                    "endTimeUnixNano": "1100000000",
+                    "attributes": [
+                      {
+                        "key": "gen_ai.operation.name",
+                        "value": {
+                          "stringValue": "chat"
+                        }
+                      },
+                      {
+                        "key": "gen_ai.request.model",
+                        "value": {
+                          "stringValue": "vendor/one"
+                        }
+                      }
+                    ],
+                    "name": "PRIVATE_SPAN_NAME",
+                    "events": [
+                      {
+                        "name": "PRIVATE_EVENT"
+                      }
+                    ],
+                    "status": {
+                      "message": "PRIVATE_STATUS"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "privacy-sentinel",
+      "expected": "observed-no-drift",
+      "policy": {
+        "model_list": [
+          {
+            "model_name": "primary"
+          },
+          {
+            "model_name": "secondary"
+          },
+          {
+            "model_name": "local"
+          }
+        ],
+        "router_settings": {
+          "num_retries": 1,
+          "fallbacks": [
+            {
+              "primary": "secondary"
+            },
+            {
+              "secondary": "local"
+            }
+          ]
+        }
+      },
+      "profile": {
+        "schema_version": 1,
+        "as_of": "2026-10-09",
+        "sources": [
+          "authored synthetic facts"
+        ],
+        "models": {},
+        "contracts": [
+          {
+            "name": "tool-agent",
+            "entrypoint": "primary",
+            "required_capabilities": [],
+            "required_context_tokens": 0,
+            "require_zero_data_retention": false,
+            "expected_input_tokens": 0,
+            "expected_output_tokens": 0,
+            "max_attempts": 3,
+            "max_cost_usd": 0,
+            "max_latency_ms": 500
+          }
+        ]
+      },
+      "bindings": {
+        "schema_version": 1,
+        "as_of": "2026-10-09",
+        "scopes": [
+          "gateway-fixture"
+        ],
+        "model_groups": {
+          "vendor/one": "primary",
+          "vendor/two": "secondary",
+          "vendor/three": "local"
+        },
+        "requests": [
+          {
+            "trace_id": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "root_span_id": "0000000000000001",
+            "contract": "tool-agent"
+          }
+        ]
+      },
+      "trace": {
+        "resourceSpans": [
+          {
+            "resource": {
+              "attributes": [
+                {
+                  "key": "private",
+                  "value": {
+                    "stringValue": "PRIVATE_RESOURCE"
+                  }
+                }
+              ]
+            },
+            "scopeSpans": [
+              {
+                "scope": {
+                  "name": "gateway-fixture"
+                },
+                "spans": [
+                  {
+                    "traceId": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+                    "spanId": "0000000000000001",
+                    "parentSpanId": "",
+                    "kind": 2,
+                    "startTimeUnixNano": "1000000000",
+                    "endTimeUnixNano": "2000000000",
+                    "attributes": [
+                      {
+                        "key": "gen_ai.operation.name",
+                        "value": {
+                          "stringValue": "gateway"
+                        }
+                      }
+                    ],
+                    "name": "PRIVATE_SPAN_NAME",
+                    "events": [
+                      {
+                        "name": "PRIVATE_EVENT"
+                      }
+                    ],
+                    "status": {
+                      "message": "PRIVATE_STATUS"
+                    }
+                  },
+                  {
+                    "traceId": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+                    "spanId": "0000000000000002",
+                    "parentSpanId": "0000000000000001",
+                    "kind": 3,
+                    "startTimeUnixNano": "1010000000",
+                    "endTimeUnixNano": "1100000000",
+                    "attributes": [
+                      {
+                        "key": "gen_ai.operation.name",
+                        "value": {
+                          "stringValue": "chat"
+                        }
+                      },
+                      {
+                        "key": "gen_ai.request.model",
+                        "value": {
+                          "stringValue": "vendor/one"
+                        }
+                      },
+                      {
+                        "key": "gen_ai.input.messages",
+                        "value": {
+                          "stringValue": "PRIVATE_PROMPT_AND_SECRET"
+                        }
+                      }
+                    ],
+                    "name": "PRIVATE_SPAN_NAME",
+                    "events": [
+                      {
+                        "name": "PRIVATE_EVENT"
+                      }
+                    ],
+                    "status": {
+                      "message": "PRIVATE_STATUS"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}

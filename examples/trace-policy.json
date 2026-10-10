@@ -1,0 +1,24 @@
+{
+  "model_list": [
+    {
+      "model_name": "primary"
+    },
+    {
+      "model_name": "secondary"
+    },
+    {
+      "model_name": "local"
+    }
+  ],
+  "router_settings": {
+    "num_retries": 1,
+    "fallbacks": [
+      {
+        "primary": "secondary"
+      },
+      {
+        "secondary": "local"
+      }
+    ]
+  }
+}

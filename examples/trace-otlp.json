@@ -1,0 +1,112 @@
+{
+  "resourceSpans": [
+    {
+      "resource": {
+        "attributes": [
+          {
+            "key": "private",
+            "value": {
+              "stringValue": "PRIVATE_RESOURCE"
+            }
+          }
+        ]
+      },
+      "scopeSpans": [
+        {
+          "scope": {
+            "name": "gateway-fixture"
+          },
+          "spans": [
+            {
+              "traceId": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+              "spanId": "0000000000000001",
+              "parentSpanId": "",
+              "kind": 2,
+              "startTimeUnixNano": "1000000000",
+              "endTimeUnixNano": "2000000000",
+              "attributes": [
+                {
+                  "key": "gen_ai.operation.name",
+                  "value": {
+                    "stringValue": "gateway"
+                  }
+                }
+              ],
+              "name": "PRIVATE_SPAN_NAME",
+              "events": [
+                {
+                  "name": "PRIVATE_EVENT"
+                }
+              ],
+              "status": {
+                "message": "PRIVATE_STATUS"
+              }
+            },
+            {
+              "traceId": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+              "spanId": "0000000000000002",
+              "parentSpanId": "0000000000000001",
+              "kind": 3,
+              "startTimeUnixNano": "1010000000",
+              "endTimeUnixNano": "1100000000",
+              "attributes": [
+                {
+                  "key": "gen_ai.operation.name",
+                  "value": {
+                    "stringValue": "chat"
+                  }
+                },
+                {
+                  "key": "gen_ai.request.model",
+                  "value": {
+                    "stringValue": "vendor/one"
+                  }
+                }
+              ],
+              "name": "PRIVATE_SPAN_NAME",
+              "events": [
+                {
+                  "name": "PRIVATE_EVENT"
+                }
+              ],
+              "status": {
+                "message": "PRIVATE_STATUS"
+              }
+            },
+            {
+              "traceId": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+              "spanId": "0000000000000003",
+              "parentSpanId": "0000000000000001",
+              "kind": 3,
+              "startTimeUnixNano": "1110000000",
+              "endTimeUnixNano": "1200000000",
+              "attributes": [
+                {
+                  "key": "gen_ai.operation.name",
+                  "value": {
+                    "stringValue": "chat"
+                  }
+                },
+                {
+                  "key": "gen_ai.request.model",
+                  "value": {
+                    "stringValue": "vendor/two"
+                  }
+                }
+              ],
+              "name": "PRIVATE_SPAN_NAME",
+              "events": [
+                {
+                  "name": "PRIVATE_EVENT"
+                }
+              ],
+              "status": {
+                "message": "PRIVATE_STATUS"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

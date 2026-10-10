@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "as_of": "2026-10-09",
+  "scopes": [
+    "gateway-fixture"
+  ],
+  "model_groups": {
+    "vendor/one": "primary",
+    "vendor/two": "secondary",
+    "vendor/three": "local"
+  },
+  "requests": [
+    {
+      "trace_id": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "root_span_id": "0000000000000001",
+      "contract": "tool-agent"
+    }
+  ]
+}

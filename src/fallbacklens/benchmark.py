@@ -7,6 +7,7 @@ from copy import deepcopy
 from pathlib import Path
 from typing import Any
 
+from . import __version__
 from .audit import audit_policy
 from .loaders import policy_from_data, profile_from_data
 
@@ -59,7 +60,7 @@ def run_benchmark(path: str | Path) -> dict[str, Any]:
             "accuracy": baseline_correct / total if total else 0.0,
         },
         "fallbacklens": {
-            "version": "0.1.0",
+            "version": __version__,
             "correct": lens_correct,
             "accuracy": lens_correct / total if total else 0.0,
         },

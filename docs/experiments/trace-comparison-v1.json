@@ -1,0 +1,676 @@
+{
+  "schema_version": 1,
+  "suite": "synthetic-otlp-comparison-v1",
+  "seed": 20261009,
+  "cases": 16,
+  "correct": 16,
+  "baseline_correct": 3,
+  "results": [
+    {
+      "case": "serial-fallback",
+      "expected": "observed-no-drift",
+      "observed": "observed-no-drift",
+      "baseline": "observed-no-drift",
+      "naive_count": 2,
+      "report": {
+        "schema_version": 1,
+        "suite": "observed-trace-contract-v1",
+        "bindings_as_of": "2026-10-09",
+        "limits": "Observed logical calls only; retries can be hidden inside a span. Missing/sampled telemetry can hide drift. Not provider attempts, complete coverage, billed cost, model quality, or production safety.",
+        "summary": {
+          "requests": 1,
+          "observed-no-drift": 1,
+          "drift": 0,
+          "inconclusive": 0
+        },
+        "requests": [
+          {
+            "request": 1,
+            "contract": "tool-agent",
+            "verdict": "observed-no-drift",
+            "findings": [],
+            "observed_logical_calls": 2,
+            "nested_wrappers_removed": 0,
+            "inference_envelope_ms": 190.0,
+            "call_threshold": 3,
+            "latency_threshold_ms": 500.0,
+            "calls": [
+              {
+                "group": "primary",
+                "start_ms": 10.0,
+                "duration_ms": 90.0
+              },
+              {
+                "group": "secondary",
+                "start_ms": 110.0,
+                "duration_ms": 90.0
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "case": "nested-wrapper",
+      "expected": "observed-no-drift",
+      "observed": "observed-no-drift",
+      "baseline": "drift",
+      "naive_count": 2,
+      "report": {
+        "schema_version": 1,
+        "suite": "observed-trace-contract-v1",
+        "bindings_as_of": "2026-10-09",
+        "limits": "Observed logical calls only; retries can be hidden inside a span. Missing/sampled telemetry can hide drift. Not provider attempts, complete coverage, billed cost, model quality, or production safety.",
+        "summary": {
+          "requests": 1,
+          "observed-no-drift": 1,
+          "drift": 0,
+          "inconclusive": 0
+        },
+        "requests": [
+          {
+            "request": 1,
+            "contract": "tool-agent",
+            "verdict": "observed-no-drift",
+            "findings": [],
+            "observed_logical_calls": 1,
+            "nested_wrappers_removed": 1,
+            "inference_envelope_ms": 90.0,
+            "call_threshold": 1,
+            "latency_threshold_ms": 500.0,
+            "calls": [
+              {
+                "group": "primary",
+                "start_ms": 10.0,
+                "duration_ms": 90.0
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "case": "workflow-labeled-llm",
+      "expected": "observed-no-drift",
+      "observed": "observed-no-drift",
+      "baseline": "drift",
+      "naive_count": 3,
+      "report": {
+        "schema_version": 1,
+        "suite": "observed-trace-contract-v1",
+        "bindings_as_of": "2026-10-09",
+        "limits": "Observed logical calls only; retries can be hidden inside a span. Missing/sampled telemetry can hide drift. Not provider attempts, complete coverage, billed cost, model quality, or production safety.",
+        "summary": {
+          "requests": 1,
+          "observed-no-drift": 1,
+          "drift": 0,
+          "inconclusive": 0
+        },
+        "requests": [
+          {
+            "request": 1,
+            "contract": "tool-agent",
+            "verdict": "observed-no-drift",
+            "findings": [],
+            "observed_logical_calls": 2,
+            "nested_wrappers_removed": 0,
+            "inference_envelope_ms": 190.0,
+            "call_threshold": 2,
+            "latency_threshold_ms": 500.0,
+            "calls": [
+              {
+                "group": "primary",
+                "start_ms": 10.0,
+                "duration_ms": 90.0
+              },
+              {
+                "group": "secondary",
+                "start_ms": 110.0,
+                "duration_ms": 90.0
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "case": "flattened-server",
+      "expected": "inconclusive",
+      "observed": "inconclusive",
+      "baseline": "observed-no-drift",
+      "naive_count": 1,
+      "report": {
+        "schema_version": 1,
+        "suite": "observed-trace-contract-v1",
+        "bindings_as_of": "2026-10-09",
+        "limits": "Observed logical calls only; retries can be hidden inside a span. Missing/sampled telemetry can hide drift. Not provider attempts, complete coverage, billed cost, model quality, or production safety.",
+        "summary": {
+          "requests": 1,
+          "observed-no-drift": 0,
+          "drift": 0,
+          "inconclusive": 1
+        },
+        "requests": [
+          {
+            "request": 1,
+            "contract": "tool-agent",
+            "verdict": "inconclusive",
+            "findings": [
+              "NO_SUPPORTED_CALLS"
+            ],
+            "observed_logical_calls": 0,
+            "nested_wrappers_removed": 0,
+            "inference_envelope_ms": null,
+            "call_threshold": 3,
+            "latency_threshold_ms": 500.0,
+            "calls": []
+          }
+        ]
+      }
+    },
+    {
+      "case": "unknown-model",
+      "expected": "inconclusive",
+      "observed": "inconclusive",
+      "baseline": "observed-no-drift",
+      "naive_count": 1,
+      "report": {
+        "schema_version": 1,
+        "suite": "observed-trace-contract-v1",
+        "bindings_as_of": "2026-10-09",
+        "limits": "Observed logical calls only; retries can be hidden inside a span. Missing/sampled telemetry can hide drift. Not provider attempts, complete coverage, billed cost, model quality, or production safety.",
+        "summary": {
+          "requests": 1,
+          "observed-no-drift": 0,
+          "drift": 0,
+          "inconclusive": 1
+        },
+        "requests": [
+          {
+            "request": 1,
+            "contract": "tool-agent",
+            "verdict": "inconclusive",
+            "findings": [
+              "MODEL_MAPPING_UNKNOWN",
+              "NO_SUPPORTED_CALLS"
+            ],
+            "observed_logical_calls": 0,
+            "nested_wrappers_removed": 0,
+            "inference_envelope_ms": null,
+            "call_threshold": 3,
+            "latency_threshold_ms": 500.0,
+            "calls": []
+          }
+        ]
+      }
+    },
+    {
+      "case": "missing-parent",
+      "expected": "inconclusive",
+      "observed": "inconclusive",
+      "baseline": "observed-no-drift",
+      "naive_count": 1,
+      "report": {
+        "schema_version": 1,
+        "suite": "observed-trace-contract-v1",
+        "bindings_as_of": "2026-10-09",
+        "limits": "Observed logical calls only; retries can be hidden inside a span. Missing/sampled telemetry can hide drift. Not provider attempts, complete coverage, billed cost, model quality, or production safety.",
+        "summary": {
+          "requests": 1,
+          "observed-no-drift": 0,
+          "drift": 0,
+          "inconclusive": 1
+        },
+        "requests": [
+          {
+            "request": 1,
+            "contract": "tool-agent",
+            "verdict": "inconclusive",
+            "findings": [
+              "NO_SUPPORTED_CALLS",
+              "PARENT_GAP"
+            ],
+            "observed_logical_calls": 0,
+            "nested_wrappers_removed": 0,
+            "inference_envelope_ms": null,
+            "call_threshold": 3,
+            "latency_threshold_ms": 500.0,
+            "calls": []
+          }
+        ]
+      }
+    },
+    {
+      "case": "call-threshold",
+      "expected": "drift",
+      "observed": "drift",
+      "baseline": "drift",
+      "naive_count": 4,
+      "report": {
+        "schema_version": 1,
+        "suite": "observed-trace-contract-v1",
+        "bindings_as_of": "2026-10-09",
+        "limits": "Observed logical calls only; retries can be hidden inside a span. Missing/sampled telemetry can hide drift. Not provider attempts, complete coverage, billed cost, model quality, or production safety.",
+        "summary": {
+          "requests": 1,
+          "observed-no-drift": 0,
+          "drift": 1,
+          "inconclusive": 0
+        },
+        "requests": [
+          {
+            "request": 1,
+            "contract": "tool-agent",
+            "verdict": "drift",
+            "findings": [
+              "LOGICAL_CALL_THRESHOLD_EXCEEDED"
+            ],
+            "observed_logical_calls": 4,
+            "nested_wrappers_removed": 0,
+            "inference_envelope_ms": 290.0,
+            "call_threshold": 3,
+            "latency_threshold_ms": 500.0,
+            "calls": [
+              {
+                "group": "primary",
+                "start_ms": 10.0,
+                "duration_ms": 90.0
+              },
+              {
+                "group": "secondary",
+                "start_ms": 110.0,
+                "duration_ms": 90.0
+              },
+              {
+                "group": "local",
+                "start_ms": 210.0,
+                "duration_ms": 40.0
+              },
+              {
+                "group": "local",
+                "start_ms": 260.0,
+                "duration_ms": 40.0
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "case": "group-call-threshold",
+      "expected": "drift",
+      "observed": "drift",
+      "baseline": "observed-no-drift",
+      "naive_count": 3,
+      "report": {
+        "schema_version": 1,
+        "suite": "observed-trace-contract-v1",
+        "bindings_as_of": "2026-10-09",
+        "limits": "Observed logical calls only; retries can be hidden inside a span. Missing/sampled telemetry can hide drift. Not provider attempts, complete coverage, billed cost, model quality, or production safety.",
+        "summary": {
+          "requests": 1,
+          "observed-no-drift": 0,
+          "drift": 1,
+          "inconclusive": 0
+        },
+        "requests": [
+          {
+            "request": 1,
+            "contract": "tool-agent",
+            "verdict": "drift",
+            "findings": [
+              "LOGICAL_GROUP_CALL_THRESHOLD_EXCEEDED"
+            ],
+            "observed_logical_calls": 3,
+            "nested_wrappers_removed": 0,
+            "inference_envelope_ms": 290.0,
+            "call_threshold": 3,
+            "latency_threshold_ms": 500.0,
+            "calls": [
+              {
+                "group": "primary",
+                "start_ms": 10.0,
+                "duration_ms": 90.0
+              },
+              {
+                "group": "primary",
+                "start_ms": 110.0,
+                "duration_ms": 90.0
+              },
+              {
+                "group": "primary",
+                "start_ms": 210.0,
+                "duration_ms": 90.0
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "case": "unconfigured-transition",
+      "expected": "drift",
+      "observed": "drift",
+      "baseline": "observed-no-drift",
+      "naive_count": 2,
+      "report": {
+        "schema_version": 1,
+        "suite": "observed-trace-contract-v1",
+        "bindings_as_of": "2026-10-09",
+        "limits": "Observed logical calls only; retries can be hidden inside a span. Missing/sampled telemetry can hide drift. Not provider attempts, complete coverage, billed cost, model quality, or production safety.",
+        "summary": {
+          "requests": 1,
+          "observed-no-drift": 0,
+          "drift": 1,
+          "inconclusive": 0
+        },
+        "requests": [
+          {
+            "request": 1,
+            "contract": "tool-agent",
+            "verdict": "drift",
+            "findings": [
+              "UNCONFIGURED_TRANSITION"
+            ],
+            "observed_logical_calls": 2,
+            "nested_wrappers_removed": 0,
+            "inference_envelope_ms": 190.0,
+            "call_threshold": 3,
+            "latency_threshold_ms": 500.0,
+            "calls": [
+              {
+                "group": "primary",
+                "start_ms": 10.0,
+                "duration_ms": 90.0
+              },
+              {
+                "group": "local",
+                "start_ms": 110.0,
+                "duration_ms": 90.0
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "case": "latency-drift",
+      "expected": "drift",
+      "observed": "drift",
+      "baseline": "observed-no-drift",
+      "naive_count": 1,
+      "report": {
+        "schema_version": 1,
+        "suite": "observed-trace-contract-v1",
+        "bindings_as_of": "2026-10-09",
+        "limits": "Observed logical calls only; retries can be hidden inside a span. Missing/sampled telemetry can hide drift. Not provider attempts, complete coverage, billed cost, model quality, or production safety.",
+        "summary": {
+          "requests": 1,
+          "observed-no-drift": 0,
+          "drift": 1,
+          "inconclusive": 0
+        },
+        "requests": [
+          {
+            "request": 1,
+            "contract": "tool-agent",
+            "verdict": "drift",
+            "findings": [
+              "OBSERVED_LATENCY_EXCEEDED"
+            ],
+            "observed_logical_calls": 1,
+            "nested_wrappers_removed": 0,
+            "inference_envelope_ms": 690.0,
+            "call_threshold": 3,
+            "latency_threshold_ms": 500.0,
+            "calls": [
+              {
+                "group": "primary",
+                "start_ms": 10.0,
+                "duration_ms": 690.0
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "case": "parallel-ambiguity",
+      "expected": "inconclusive",
+      "observed": "inconclusive",
+      "baseline": "observed-no-drift",
+      "naive_count": 2,
+      "report": {
+        "schema_version": 1,
+        "suite": "observed-trace-contract-v1",
+        "bindings_as_of": "2026-10-09",
+        "limits": "Observed logical calls only; retries can be hidden inside a span. Missing/sampled telemetry can hide drift. Not provider attempts, complete coverage, billed cost, model quality, or production safety.",
+        "summary": {
+          "requests": 1,
+          "observed-no-drift": 0,
+          "drift": 0,
+          "inconclusive": 1
+        },
+        "requests": [
+          {
+            "request": 1,
+            "contract": "tool-agent",
+            "verdict": "inconclusive",
+            "findings": [
+              "PARALLEL_ROUTE_ORDER_UNKNOWN"
+            ],
+            "observed_logical_calls": 2,
+            "nested_wrappers_removed": 0,
+            "inference_envelope_ms": 140.0,
+            "call_threshold": 3,
+            "latency_threshold_ms": 500.0,
+            "calls": [
+              {
+                "group": "primary",
+                "start_ms": 10.0,
+                "duration_ms": 90.0
+              },
+              {
+                "group": "secondary",
+                "start_ms": 50.0,
+                "duration_ms": 100.0
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "case": "nested-route-ambiguity",
+      "expected": "inconclusive",
+      "observed": "inconclusive",
+      "baseline": "observed-no-drift",
+      "naive_count": 2,
+      "report": {
+        "schema_version": 1,
+        "suite": "observed-trace-contract-v1",
+        "bindings_as_of": "2026-10-09",
+        "limits": "Observed logical calls only; retries can be hidden inside a span. Missing/sampled telemetry can hide drift. Not provider attempts, complete coverage, billed cost, model quality, or production safety.",
+        "summary": {
+          "requests": 1,
+          "observed-no-drift": 0,
+          "drift": 0,
+          "inconclusive": 1
+        },
+        "requests": [
+          {
+            "request": 1,
+            "contract": "tool-agent",
+            "verdict": "inconclusive",
+            "findings": [
+              "NESTED_ROUTE_AMBIGUOUS"
+            ],
+            "observed_logical_calls": 1,
+            "nested_wrappers_removed": 1,
+            "inference_envelope_ms": 90.0,
+            "call_threshold": 3,
+            "latency_threshold_ms": 500.0,
+            "calls": [
+              {
+                "group": "primary",
+                "start_ms": 10.0,
+                "duration_ms": 90.0
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "case": "scope-not-selected",
+      "expected": "inconclusive",
+      "observed": "inconclusive",
+      "baseline": "observed-no-drift",
+      "naive_count": 1,
+      "report": {
+        "schema_version": 1,
+        "suite": "observed-trace-contract-v1",
+        "bindings_as_of": "2026-10-09",
+        "limits": "Observed logical calls only; retries can be hidden inside a span. Missing/sampled telemetry can hide drift. Not provider attempts, complete coverage, billed cost, model quality, or production safety.",
+        "summary": {
+          "requests": 1,
+          "observed-no-drift": 0,
+          "drift": 0,
+          "inconclusive": 1
+        },
+        "requests": [
+          {
+            "request": 1,
+            "contract": "tool-agent",
+            "verdict": "inconclusive",
+            "findings": [
+              "NO_SUPPORTED_CALLS"
+            ],
+            "observed_logical_calls": 0,
+            "nested_wrappers_removed": 0,
+            "inference_envelope_ms": null,
+            "call_threshold": 3,
+            "latency_threshold_ms": 500.0,
+            "calls": []
+          }
+        ]
+      }
+    },
+    {
+      "case": "entrypoint-drift",
+      "expected": "drift",
+      "observed": "drift",
+      "baseline": "observed-no-drift",
+      "naive_count": 1,
+      "report": {
+        "schema_version": 1,
+        "suite": "observed-trace-contract-v1",
+        "bindings_as_of": "2026-10-09",
+        "limits": "Observed logical calls only; retries can be hidden inside a span. Missing/sampled telemetry can hide drift. Not provider attempts, complete coverage, billed cost, model quality, or production safety.",
+        "summary": {
+          "requests": 1,
+          "observed-no-drift": 0,
+          "drift": 1,
+          "inconclusive": 0
+        },
+        "requests": [
+          {
+            "request": 1,
+            "contract": "tool-agent",
+            "verdict": "drift",
+            "findings": [
+              "ENTRYPOINT_DRIFT"
+            ],
+            "observed_logical_calls": 1,
+            "nested_wrappers_removed": 0,
+            "inference_envelope_ms": 90.0,
+            "call_threshold": 3,
+            "latency_threshold_ms": 500.0,
+            "calls": [
+              {
+                "group": "secondary",
+                "start_ms": 110.0,
+                "duration_ms": 90.0
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "case": "internal-inference",
+      "expected": "inconclusive",
+      "observed": "inconclusive",
+      "baseline": "observed-no-drift",
+      "naive_count": 1,
+      "report": {
+        "schema_version": 1,
+        "suite": "observed-trace-contract-v1",
+        "bindings_as_of": "2026-10-09",
+        "limits": "Observed logical calls only; retries can be hidden inside a span. Missing/sampled telemetry can hide drift. Not provider attempts, complete coverage, billed cost, model quality, or production safety.",
+        "summary": {
+          "requests": 1,
+          "observed-no-drift": 0,
+          "drift": 0,
+          "inconclusive": 1
+        },
+        "requests": [
+          {
+            "request": 1,
+            "contract": "tool-agent",
+            "verdict": "inconclusive",
+            "findings": [
+              "INTERNAL_INFERENCE_UNSUPPORTED",
+              "NO_SUPPORTED_CALLS"
+            ],
+            "observed_logical_calls": 0,
+            "nested_wrappers_removed": 0,
+            "inference_envelope_ms": null,
+            "call_threshold": 3,
+            "latency_threshold_ms": 500.0,
+            "calls": []
+          }
+        ]
+      }
+    },
+    {
+      "case": "privacy-sentinel",
+      "expected": "observed-no-drift",
+      "observed": "observed-no-drift",
+      "baseline": "observed-no-drift",
+      "naive_count": 1,
+      "report": {
+        "schema_version": 1,
+        "suite": "observed-trace-contract-v1",
+        "bindings_as_of": "2026-10-09",
+        "limits": "Observed logical calls only; retries can be hidden inside a span. Missing/sampled telemetry can hide drift. Not provider attempts, complete coverage, billed cost, model quality, or production safety.",
+        "summary": {
+          "requests": 1,
+          "observed-no-drift": 1,
+          "drift": 0,
+          "inconclusive": 0
+        },
+        "requests": [
+          {
+            "request": 1,
+            "contract": "tool-agent",
+            "verdict": "observed-no-drift",
+            "findings": [],
+            "observed_logical_calls": 1,
+            "nested_wrappers_removed": 0,
+            "inference_envelope_ms": 90.0,
+            "call_threshold": 3,
+            "latency_threshold_ms": 500.0,
+            "calls": [
+              {
+                "group": "primary",
+                "start_ms": 10.0,
+                "duration_ms": 90.0
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}
