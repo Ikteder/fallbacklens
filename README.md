@@ -103,10 +103,11 @@ Inputs and different output formats cannot share a resolved path or existing har
 Collision returns exit2 and preserves bytes; unrelated report replacement stays allowed.
 This preflight is not protection against hostile concurrent filesystem changes.
 
-Current 0.3.2 verification: 61 tests passed on each Linux Python 3.10, 3.12 and 3.14
-job, including real symlink cases. Windows local and clean-wheel checks passed 60,
-with one symlink-permission skip; hard links were tested. The optional mock integration
-also passed. See [public CI](https://github.com/Ikteder/fallbacklens/actions/runs/38017997193)
+Current 0.3.2 verification: 62 tests passed on each Linux Python 3.10, 3.12 and 3.14
+job, including real symlink cases and inert HTML/SVG operator labels. Windows local
+checks passed 61 with one symlink-permission skip; hard links were tested. The earlier
+clean-wheel check passed 60 with the same skip, before the label regression was added.
+The optional mock integration also passed. See [public CI](https://github.com/Ikteder/fallbacklens/actions/runs/38018344139)
 and [output-preservation evidence](docs/experiments/2026-10-09-output-preservation.md).
 
 [Evidence and limitations](docs/experiments/2026-10-09-litellm-interop.md). This validates
